@@ -1,0 +1,139 @@
+body
+{
+	background-color:#1c2026;
+}
+
+h1 {font-size: 50px; color: white; text-align: center; font-family:"Titillium Web", sans-serif; width: 100%}
+
+h2 {font-size: 40px; color: white; text-align: center; font-family:"Titillium Web", sans-serif;}
+
+h3 {font-size: 40x; color: white; text-align: center; font-family:"Titillium Web", sans-serif;}
+
+/*
+.contagem
+{
+	color: white;
+	font-size: 26pt;
+	border-color:white;
+	text-align: center;
+	padding-bottom: 3%;
+}
+
+form
+{
+	padding-left: 2%;
+}
+
+table
+{
+	color: white;
+	font-size: 16pt;
+	border-color:white;
+}
+
+table, th, td
+{	
+	border: 1px solid white;
+}
+
+td
+{
+	padding: 10px;
+}
+
+label
+{
+	color: white;
+	font-size: 16pt;
+}
+*/
+
+.menu
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color:brown;
+}
+
+.btn {border-color:white;}
+
+p
+{
+	font-family:"Cairo", sans-serif;
+	text-align: center;
+	font-size: 20px;
+	color: white;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.highlight
+{
+	background-color: white;
+	color: black
+}
+
+.itemmenu
+{
+	float: left;
+}
+
+.itemmenu a
+{
+	font-family:"Cairo", sans-serif;
+	display: block;
+	color: black;
+	font-size: 15pt;
+	font-weight: bold;
+	text-align: center;
+	padding: 12px 20px;
+	text-decoration: none;
+}
+
+.itemmenu a:hover
+{
+	background-color: white;
+}
+
+.active
+{
+	background-color: #04AA6D;
+}
+
+.center
+{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+@media (max-width: 768px)
+{
+	html
+	{
+		font-size: 90%;
+	}
+
+	.itemmenu a
+	{
+		font-size: 90%;
+	}
+}
+
+@media (max-width: 350px)
+{
+	.itemmenu a
+	{
+		font-size: 70%;
+	}
+}
+
+.rb
+{
+	display: inline-block;
+    vertical-align: top;
+	padding-left: 50%;
+}
