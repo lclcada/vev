@@ -9,6 +9,17 @@ h2 {font-size: 40px; color: white; text-align: center; font-family:"Titillium We
 
 h3 {font-size: 40x; color: white; text-align: center; font-family:"Titillium Web", sans-serif;}
 
+#jogo
+{
+	padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+	
+	border: 1px solid white;
+}
+
 /*
 .contagem
 {
