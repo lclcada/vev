@@ -4,6 +4,14 @@ var mapW = 10, mapH = 10;
 
 var gameMap = [8];
 
+class Mapa {
+    constructor(array, width, height){
+        this.array = array; //quando for passar a array, adicionar explicitamente o inicio e o fim.
+        this.width = width;
+        this.height = height;
+    }
+}
+
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
