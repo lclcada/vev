@@ -2,7 +2,7 @@ var ctx = null;
 var tileW = 40, tileH = 40;
 var mapW = 10, mapH = 10;
 
-var gameMap = [100];
+var gameMap = [8];
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -23,21 +23,20 @@ function weightedRand(spec) {
 }
 
 function generateMap() {
-    console.log("generate map");
     for (var i = 1; i < (mapW * mapH) - 1; i++) {
         //0 = casa void
         //1 = casa vazia
         //2 = positivo
         //3 = negativo
-        //100 = inicio
-        //200 = fim
+        //8 = inicio
+        //9 = fim
         var cl = weightedRand({ 1: 0.6, 2: 0.2, 3: 0.2 });
         var cl = cl();
-        console.log(cl);
         gameMap.push(parseInt(cl));
     }
-    gameMap.push(200);
+    gameMap.push(9);
 
+    console.log("generated map:");
     console.log(gameMap);
 }
 
@@ -63,10 +62,10 @@ function drawGame() {
                 case 3:
                     ctx.fillStyle = "#b31919";
                     break;
-                case 100:
+                case 8:
                     ctx.fillStyle = "#140ddb";
                     break;
-                case 200:
+                case 9:
                     ctx.fillStyle = "#e6ed13";
                     break;
                 default:

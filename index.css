@@ -1,24 +1,61 @@
-body
-{
-	background-color:#1c2026;
+body {
+	background-color: #1c2026;
 }
 
-h1 {font-size: 50px; color: white; text-align: center; font-family:"Titillium Web", sans-serif; width: 100%}
+h1 {
+	font-size: 50px;
+	color: white;
+	text-align: center;
+	font-family: "Titillium Web", sans-serif;
+	width: 100%
+}
 
-h2 {font-size: 40px; color: white; text-align: center; font-family:"Titillium Web", sans-serif;}
+h2 {
+	font-size: 40px;
+	color: white;
+	text-align: center;
+	font-family: "Titillium Web", sans-serif;
+}
 
-h3 {font-size: 40x; color: white; text-align: center; font-family:"Titillium Web", sans-serif;}
+h3 {
+	font-size: 40x;
+	color: white;
+	text-align: center;
+	font-family: "Titillium Web", sans-serif;
+}
 
-#jogo
-{
+#jogo {
 	padding-left: 0;
-    padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-	
+	padding-right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+
 	border: 1px solid white;
 }
+
+.mainbtns {
+	background-color: #04AA6D;
+	border: none;
+	font-family: "Titillium Web", sans-serif;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	font-size: 15pt;
+	font-weight: bold;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	border-radius: 10px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  }
 
 /*
 .contagem
@@ -34,45 +71,24 @@ form
 {
 	padding-left: 2%;
 }
-
-table
-{
-	color: white;
-	font-size: 16pt;
-	border-color:white;
-}
-
-table, th, td
-{	
-	border: 1px solid white;
-}
-
-td
-{
-	padding: 10px;
-}
+*/
 
 label
 {
 	color: white;
 	font-size: 16pt;
 }
-*/
 
-.menu
-{
+.menu {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color:brown;
+	background-color: brown;
 }
 
-.btn {border-color:white;}
-
-p
-{
-	font-family:"Cairo", sans-serif;
+p {
+	font-family: "Cairo", sans-serif;
 	text-align: center;
 	font-size: 20px;
 	color: white;
@@ -80,22 +96,19 @@ p
 	padding-right: 50px;
 }
 
-.highlight
-{
+.highlight {
 	background-color: white;
 	color: black
 }
 
-.itemmenu
-{
+.itemmenu {
 	float: left;
 }
 
-.itemmenu a
-{
-	font-family:"Cairo", sans-serif;
+.itemmenu a {
+	font-family: "Cairo", sans-serif;
 	display: block;
-	color: black;
+	color: white;
 	font-size: 15pt;
 	font-weight: bold;
 	text-align: center;
@@ -103,48 +116,39 @@ p
 	text-decoration: none;
 }
 
-.itemmenu a:hover
-{
-	background-color: white;
+.itemmenu a:hover {
+	background-color: black;
 }
 
-.active
-{
+.active {
 	background-color: #04AA6D;
 }
 
-.center
-{
+.center {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 	width: 50%;
 }
 
-@media (max-width: 768px)
-{
-	html
-	{
+@media (max-width: 768px) {
+	html {
 		font-size: 90%;
 	}
 
-	.itemmenu a
-	{
+	.itemmenu a {
 		font-size: 90%;
 	}
 }
 
-@media (max-width: 350px)
-{
-	.itemmenu a
-	{
+@media (max-width: 350px) {
+	.itemmenu a {
 		font-size: 70%;
 	}
 }
 
-.rb
-{
+.rb {
 	display: inline-block;
-    vertical-align: top;
+	vertical-align: top;
 	padding-left: 50%;
 }

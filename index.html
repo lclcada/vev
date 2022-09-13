@@ -21,7 +21,16 @@
 		</ul>
 	</nav>
 
-	<canvas id="jogo" width="400" height="400">
+	<div class="center">
+		<label for="players">Número de jogadores: </label>
+		<br>
+		<input type="number" id="players" name="players" min="2" max="6" value="2">
+		<br>
+
+		<button class="mainbtns" onclick="startGame()">Jogar</button>
+	</div>
+
+	<canvas id="jogo" width="400" height="400"> <!--style="display:none"-->
 		<h3>O seu browser não suporta o canvas. Contate o desenvolvedor.</h3>
 	</canvas>
 
