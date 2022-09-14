@@ -26,16 +26,34 @@
 		<label for="players">Número de jogadores: </label>
 		<input type="number" class="number" id="players" name="players" min="1" max="6" value="1">
 		<br><br>
-		
-		<input type="radio" id="map1" name="mapselect" value="1"> <img src="img/mapas/mapa1.png" style="width:25%">
-		<label for="map1">Mapa 1</label>
-		<input type="radio" id="map2" name="mapselect" value="2"> <img src="img/mapas/mapa2.png" style="width:25%">
-		<label for="map2">Mapa 2</label><br><br>
-		<input type="radio" id="map3" name="mapselect" value="3"> <img src="img/mapas/mapa3.png" style="width:25%">
-		<label for="map3">Mapa 3</label>
-		<input type="radio" id="map4" name="mapselect" value="4"> <img src="img/mapas/mapa4.png" style="width:30%">
-		<label for="map4">Mapa 4</label><br>
-		<br>
+
+		<label class="radiolabel">
+			<input type="radio" id="map1" name="mapselect" value="1" checked="true">
+			<div class="radiobtn"> <img src="img/mapas/mapa1.png" style="width:25%">
+				<p>Mapa 1</p>
+			</div>
+		</label>
+
+		<label class="radiolabel">
+			<input type="radio" id="map2" name="mapselect" value="2">
+			<div class="radiobtn"> <img src="img/mapas/mapa2.png" style="width:25%">
+				<p>Mapa 2</p>
+			</div>
+		</label>
+
+		<label class="radiolabel">
+			<input type="radio" id="map3" name="mapselect" value="3">
+			<div class="radiobtn"> <img src="img/mapas/mapa3.png" style="width:25%">
+				<p>Mapa 3</p>
+			</div>
+		</label>
+
+		<label class="radiolabel">
+			<input type="radio" id="map4" name="mapselect" value="4">
+			<div class="radiobtn"> <img src="img/mapas/mapa4.png" style="width:25%">
+				<p>Mapa 4</p>
+			</div>
+		</label>
 
 		<button class="mainbtns" onclick="startGame()">Jogar</button>
 	</div>

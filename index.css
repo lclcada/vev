@@ -27,12 +27,8 @@ h3 {
 input[type="radio"] {
 	background-color: whitesmoke;
 	vertical-align: middle;
-    width: 15px;
+	width: 15px;
 }
-
-input[type="radio"] img{
-	padding-top : 5px;
- }
 
 #jogo {
 	padding-left: 0;
@@ -71,28 +67,25 @@ input[type="radio"] img{
 	justify-content: center;
 }
 
-/*
-.contagem
-{
-	color: white;
-	font-size: 26pt;
-	border-color:white;
-	text-align: center;
-	padding-bottom: 3%;
-}
-
-form
-{
-	padding-left: 2%;
-}
-*/
-
 label {
 	font-family: "Titillium Web", sans-serif;
 	color: white;
 	font-size: 22pt;
 	font-weight: bold;
 	text-align: center;
+}
+
+.radiolabel>input {
+	display: none;
+}
+
+.radiolabel input:checked+.radiobtn {
+	background-color: #04AA6D;
+}
+
+.radiobtn{
+	width: 50%;
+	border-radius: 10px;
 }
 
 .number {
