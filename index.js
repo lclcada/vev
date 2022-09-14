@@ -89,12 +89,13 @@ function drawGame() {
     var mapW = currMap.mWidth;
     var mapH = currMap.mHeight;
 
-    for (var y = 0, i = 0; y < mapH; y += tHeight, i++) {
+    for (var y = 0, i = 0; y < mapH; y += tHeight) {
         console.log("h = " + mapH + " y = " + y);
-        for (var x = 0, j = 0; x < mapW; x += tWidth, j++) {
+        for (var x = 0; x < mapW; x += tWidth) {
+            console.log("i = " + i);
             console.log("w = " + mapW + " x = " + x);
-            console.log(currMap.array[i + j]);
-            switch (currMap.array[i + j]) {
+            console.log(currMap.array[i]);
+            switch (currMap.array[i]) {
                 case 0:
                     ctx.drawImage(tileSetImage, 0, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
@@ -123,11 +124,10 @@ function drawGame() {
                     ctx.drawImage(tileSetImage, 256, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
             }
-
-            //ctx.fillRect(x * tileW, y * tileH, tileW, tileH);
+            i++;
         }
     }
-    //requestAnimationFrame(drawGame);
+    requestAnimationFrame(drawGame);
 }
 
 tileSetImage.onload = function () {
