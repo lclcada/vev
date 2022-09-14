@@ -2,6 +2,8 @@ var ctx = null;
 var currMap = null;
 var canvas = null;
 
+var numberOfPlayers = 1;
+
 var tileSetImage = new Image();
 const tWidth = 32;
 const tHeight = tWidth;
@@ -46,8 +48,8 @@ window.onload = function () {
 }
 
 function drawGame() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (ctx == null) { return; }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     var img = new Image();
 
@@ -99,3 +101,17 @@ tileSetImage.onload = function () {
 }
 
 tileSetImage.src = "img/tileset.png";
+
+function toggleScreen(id, toggle) {
+    let element = document.getElementById(id);
+    let display = (toggle) ? "block" : "none";
+    element.style.display = display;
+}
+
+function startGame() {
+    toggleScreen("mainmenu", false);
+    toggleScreen("jogo", true);
+    numberOfPlayers = document.getElementById("players").value;
+    console.log(numberOfPlayers);
+    drawGame();
+}
