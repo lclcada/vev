@@ -31,7 +31,7 @@ h3 {
 	margin-right: auto;
 	display: block;
 	padding-top: 1%;
-	padding-bottom: 3%;
+	padding-bottom: 1%;
 }
 
 .mainbtns {
@@ -78,8 +78,23 @@ form
 */
 
 label {
+	font-family: "Titillium Web", sans-serif;
 	color: white;
-	font-size: 16pt;
+	font-size: 22pt;
+	font-weight: bold;
+	text-align: center;
+}
+
+.number{
+	background-color: #04AA6D;
+	font-family: "Titillium Web", sans-serif;
+	border-radius: 5px;
+	color: white;
+	border-width: 2px;
+	border-style: solid;
+	border-color: white;
+	font-size: 20pt;
+	width: 6%;
 }
 
 .menu {

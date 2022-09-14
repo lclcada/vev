@@ -24,13 +24,22 @@
 	<div id="mainmenu" class="center">
 		<br>
 		<label for="players">Número de jogadores: </label>
-		<input type="number" id="players" name="players" min="1" max="6" value="1">
+		<input type="number" class="number" id="players" name="players" min="1" max="6" value="1">
+		<br><br>
+		
+		<input type="radio" id="html" name="fav_language" value="HTML"> <img src="img/src/erro.png">
+		<label for="html">Mapa 1</label>
+		<input type="radio" id="css" name="fav_language" value="CSS"> <img src="img/src/erro.png">
+		<label for="css">Mapa 2</label>
+		<input type="radio" id="javascript" name="fav_language" value="JavaScript"> <img src="img/src/erro.png">
+		<label for="javascript">Mapa 3</label>
 		<br>
 
 		<button class="mainbtns" onclick="startGame()">Jogar</button>
 	</div>
 
-	<canvas id="jogo" width="512" height="512" style="display:none"> <!--style="display:none"-->
+	<canvas id="jogo" width="512" height="512" style="display:none">
+		<!--style="display:none"-->
 		<h3>O seu browser não suporta o canvas. Contate o desenvolvedor.</h3>
 	</canvas>
 
