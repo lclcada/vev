@@ -24,6 +24,16 @@ h3 {
 	font-family: "Titillium Web", sans-serif;
 }
 
+input[type="radio"] {
+	background-color: whitesmoke;
+	vertical-align: middle;
+    width: 15px;
+}
+
+input[type="radio"] img{
+	padding-top : 5px;
+ }
+
 #jogo {
 	padding-left: 0;
 	padding-right: 0;
@@ -51,7 +61,7 @@ h3 {
 	cursor: pointer;
 }
 
-.mainbtns:hover{
+.mainbtns:hover {
 	background-color: black;
 }
 
@@ -85,7 +95,7 @@ label {
 	text-align: center;
 }
 
-.number{
+.number {
 	background-color: #04AA6D;
 	font-family: "Titillium Web", sans-serif;
 	border-radius: 5px;

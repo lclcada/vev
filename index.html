@@ -27,19 +27,20 @@
 		<input type="number" class="number" id="players" name="players" min="1" max="6" value="1">
 		<br><br>
 		
-		<input type="radio" id="html" name="fav_language" value="HTML"> <img src="img/src/erro.png">
-		<label for="html">Mapa 1</label>
-		<input type="radio" id="css" name="fav_language" value="CSS"> <img src="img/src/erro.png">
-		<label for="css">Mapa 2</label>
-		<input type="radio" id="javascript" name="fav_language" value="JavaScript"> <img src="img/src/erro.png">
-		<label for="javascript">Mapa 3</label>
+		<input type="radio" id="map1" name="mapselect" value="1"> <img src="img/mapas/mapa1.png" style="width:25%">
+		<label for="map1">Mapa 1</label>
+		<input type="radio" id="map2" name="mapselect" value="2"> <img src="img/mapas/mapa2.png" style="width:25%">
+		<label for="map2">Mapa 2</label><br><br>
+		<input type="radio" id="map3" name="mapselect" value="3"> <img src="img/mapas/mapa3.png" style="width:25%">
+		<label for="map3">Mapa 3</label>
+		<input type="radio" id="map4" name="mapselect" value="4"> <img src="img/mapas/mapa4.png" style="width:30%">
+		<label for="map4">Mapa 4</label><br>
 		<br>
 
 		<button class="mainbtns" onclick="startGame()">Jogar</button>
 	</div>
 
 	<canvas id="jogo" width="512" height="512" style="display:none">
-		<!--style="display:none"-->
 		<h3>O seu browser não suporta o canvas. Contate o desenvolvedor.</h3>
 	</canvas>
 
