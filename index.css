@@ -30,8 +30,7 @@ h3 {
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
-
-	border: 1px solid white;
+	padding-bottom: 3%;
 }
 
 .mainbtns {
@@ -41,11 +40,11 @@ h3 {
 	color: white;
 	padding: 15px 32px;
 	text-align: center;
-	font-size: 15pt;
+	font-size: 20pt;
 	font-weight: bold;
 	text-decoration: none;
 	display: inline-block;
-	font-size: 16px;
+
 	border-radius: 10px;
 	margin: 4px 2px;
 	cursor: pointer;
