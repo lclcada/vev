@@ -50,7 +50,6 @@ input[type="radio"] {
 	font-size: 20pt;
 	font-weight: bold;
 	text-decoration: none;
-	display: inline-block;
 
 	border-radius: 10px;
 	margin: 4px 2px;
@@ -75,6 +74,12 @@ label {
 	text-align: center;
 }
 
+.radiolabel{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .radiolabel>input {
 	display: none;
 }
@@ -83,7 +88,7 @@ label {
 	background-color: #04AA6D;
 }
 
-.radiolabel:hover{
+.radiolabel input:hover+.radiobtn{
 	background-color: black;
 }
 
