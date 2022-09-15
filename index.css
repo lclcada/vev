@@ -97,6 +97,8 @@ label {
 	border-radius: 10px;
 	position: relative;
 	text-align: center;
+	float:left;
+	margin-right: 15px;
 }
 
 .number {
