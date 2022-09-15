@@ -44,7 +44,7 @@ h3 {
 	font-size: 20pt;
 	font-weight: bold;
 	text-decoration: none;
-	
+
 	border-radius: 10px;
 	margin: 4px 2px;
 	cursor: pointer;
@@ -71,6 +71,7 @@ label {
 
 .radioimage {
 	width: 80%;
+	padding-top: 10%;
 }
 
 .radiolabel {
@@ -170,6 +171,15 @@ p {
 		font-size: 90%;
 	}
 
+	p {
+		font-size: 50%;
+	}
+
+	.radioimage {
+		width: 90%;
+		padding-top: 15%;
+	}
+
 	.itemmenu a {
 		font-size: 90%;
 	}
@@ -178,6 +188,10 @@ p {
 @media (max-width: 350px) {
 	.itemmenu a {
 		font-size: 70%;
+	}
+
+	p {
+		font-size: 40%;
 	}
 }
 
