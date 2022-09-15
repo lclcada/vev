@@ -21,45 +21,46 @@
 		</ul>
 	</nav>
 
-	<div class="center">
+	<div id="mainmenu">
+		<div class="center">
+			<label for="players">Número de jogadores: </label>
+			<input type="number" class="number" id="players" name="players" min="1" max="5" value="1">
+		</div>
+		<br><br>
+
+		<div class="mapselection">
+			<label class="radiolabel">
+				<input type="radio" id="map1" name="mapselect" value="1" checked="true">
+				<div class="radiobtn"> <img src="img/mapas/mapa1.png" class="radioimage">
+					<p>Mapa 1</p>
+				</div>
+			</label>
+
+			<label class="radiolabel">
+				<input type="radio" id="map2" name="mapselect" value="2">
+				<div class="radiobtn"> <img src="img/mapas/mapa2.png" class="radioimage">
+					<p>Mapa 2</p>
+				</div>
+			</label>
+
+			<label class="radiolabel">
+				<input type="radio" id="map3" name="mapselect" value="3">
+				<div class="radiobtn"> <img src="img/mapas/mapa3.png" class="radioimage">
+					<p>Mapa 3</p>
+				</div>
+			</label>
+
+			<label class="radiolabel">
+				<input type="radio" id="map4" name="mapselect" value="4">
+				<div class="radiobtn"> <img src="img/mapas/mapa4.png" class="radioimage">
+					<p>Mapa 4</p>
+				</div>
+			</label>
+		</div>
+
 		<br>
-		<label for="players">Número de jogadores: </label>
-		<input type="number" class="number" id="players" name="players" min="1" max="5" value="1">
+		<div class="center"><button class="mainbtns" onclick="startGame()">Jogar</button></div>
 	</div>
-	<br><br>
-
-	<div id="mainmenu" class="center">
-		<label class="radiolabel">
-			<input type="radio" id="map1" name="mapselect" value="1" checked="true">
-			<div class="radiobtn"> <img src="img/mapas/mapa1.png" style="width:80%">
-				<p>Mapa 1</p>
-			</div>
-		</label>
-
-		<label class="radiolabel">
-			<input type="radio" id="map2" name="mapselect" value="2">
-			<div class="radiobtn"> <img src="img/mapas/mapa2.png" style="width:80%">
-				<p>Mapa 2</p>
-			</div>
-		</label>
-
-		<label class="radiolabel">
-			<input type="radio" id="map3" name="mapselect" value="3">
-			<div class="radiobtn"> <img src="img/mapas/mapa3.png" style="width:80%">
-				<p>Mapa 3</p>
-			</div>
-		</label>
-
-		<label class="radiolabel">
-			<input type="radio" id="map4" name="mapselect" value="4">
-			<div class="radiobtn"> <img src="img/mapas/mapa4.png" style="width:85%">
-				<p>Mapa 4</p>
-			</div>
-		</label>
-	</div>
-
-	<br>
-	<div class="center"><button class="mainbtns" onclick="startGame()">Jogar</button></div>
 
 	<canvas id="jogo" width="512" height="512" style="display:none">
 		<h3>O seu browser não suporta o canvas. Contate o desenvolvedor.</h3>

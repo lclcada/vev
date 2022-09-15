@@ -3,6 +3,7 @@ var currMap = null;
 var canvas = null;
 
 var numberOfPlayers = 1;
+var mapaSelecionado = 1;
 
 var tileSetImage = new Image();
 const tWidth = 32;
@@ -104,12 +105,8 @@ function getRandomInt(min, max) {
 //9 = fim
 
 window.onload = function () {
-    currMap = mapa3;
     canvas = document.getElementById("jogo");
-    canvas.width = currMap.mWidth;
-    canvas.height = currMap.mHeight;
     ctx = canvas.getContext("2d");
-    requestAnimationFrame(drawGame);
 }
 
 function drawGame() {
@@ -125,7 +122,6 @@ function drawGame() {
 
     for (var y = 0, i = 0; y < currMap.mHeight; y += tHeight) {
         for (var x = 0; x < currMap.mWidth; x += tWidth) {
-            //console.log(currMap.array[i]);
             switch (currMap.array[i]) {
                 case 0:
                     ctx.drawImage(tileSetImage, 0, 0, tWidth, tHeight, x, y, tWidth, tHeight);
@@ -177,6 +173,24 @@ function startGame() {
     toggleScreen("mainmenu", false);
     toggleScreen("jogo", true);
     numberOfPlayers = document.getElementById("players").value;
-    console.log("numero de players:" + numberOfPlayers);
+    mapaSelecionado = parseInt(document.querySelector('input[name="mapselect"]:checked').value);
+    console.log("numero de players: " + numberOfPlayers);
+    console.log("mapa selecionado: " + mapaSelecionado);
+    switch(mapaSelecionado){
+        case 1:
+            currMap = mapa1;
+            break;
+        case 2:
+            currMap = mapa2;
+            break;
+        case 3:
+            currMap = mapa3;
+            break;
+        case 4:
+            currMap = mapa4;
+            break;
+    }
+    canvas.width = currMap.mWidth;
+    canvas.height = currMap.mHeight;
     drawGame();
 }
