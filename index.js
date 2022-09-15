@@ -174,6 +174,7 @@ function toggleScreen(id, toggle) {
 function startGame() {
     toggleScreen("mainmenu", false);
     toggleScreen("jogo", true);
+    toggleScreen("voltar", true);
     numberOfPlayers = document.getElementById("players").value;
     mapaSelecionado = parseInt(document.querySelector('input[name="mapselect"]:checked').value);
     console.log("numero de players: " + numberOfPlayers);
@@ -195,4 +196,10 @@ function startGame() {
     canvas.width = currMap.mWidth;
     canvas.height = currMap.mHeight;
     drawGame();
+}
+
+function voltar() {
+    toggleScreen("mainmenu", true);
+    toggleScreen("jogo", false);
+    toggleScreen("voltar", false);
 }

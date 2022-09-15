@@ -44,7 +44,7 @@ h3 {
 	font-size: 20pt;
 	font-weight: bold;
 	text-decoration: none;
-
+	
 	border-radius: 10px;
 	margin: 4px 2px;
 	cursor: pointer;
@@ -117,6 +117,11 @@ label {
 	width: 50px;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	opacity: 1;
+}
+
 .menu {
 	list-style-type: none;
 	margin: 0;
@@ -148,7 +153,7 @@ p {
 	font-size: 12pt;
 	font-weight: bold;
 	text-align: center;
-	padding: 12px 20px;
+	padding: 10px 25px;
 	text-decoration: none;
 }
 
