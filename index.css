@@ -83,9 +83,15 @@ label {
 	background-color: #04AA6D;
 }
 
+.radiolabel:hover{
+	background-color: black;
+}
+
 .radiobtn{
 	width: 50%;
 	border-radius: 10px;
+	position: relative;
+	text-align: center;
 }
 
 .number {
@@ -146,10 +152,9 @@ p {
 }
 
 .center {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 @media (max-width: 768px) {

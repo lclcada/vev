@@ -10,7 +10,7 @@
 	<title>Vai e Volta Beta</title>
 </head>
 
-<body id="bg">
+<body>
 	<header>
 		<h1>Vai e Volta</h1>
 	</header>
@@ -21,42 +21,44 @@
 		</ul>
 	</nav>
 
-	<div id="mainmenu" class="center">
+	<div class="center">
 		<br>
 		<label for="players">Número de jogadores: </label>
 		<input type="number" class="number" id="players" name="players" min="1" max="6" value="1">
-		<br><br>
+	</div>
+	<br><br>
 
+	<div id="mainmenu" class="center">
 		<label class="radiolabel">
 			<input type="radio" id="map1" name="mapselect" value="1" checked="true">
-			<div class="radiobtn"> <img src="img/mapas/mapa1.png" style="width:25%">
+			<div class="radiobtn"> <img src="img/mapas/mapa1.png" style="width:50%">
 				<p>Mapa 1</p>
 			</div>
 		</label>
 
 		<label class="radiolabel">
 			<input type="radio" id="map2" name="mapselect" value="2">
-			<div class="radiobtn"> <img src="img/mapas/mapa2.png" style="width:25%">
+			<div class="radiobtn"> <img src="img/mapas/mapa2.png" style="width:50%">
 				<p>Mapa 2</p>
 			</div>
 		</label>
 
 		<label class="radiolabel">
 			<input type="radio" id="map3" name="mapselect" value="3">
-			<div class="radiobtn"> <img src="img/mapas/mapa3.png" style="width:25%">
+			<div class="radiobtn"> <img src="img/mapas/mapa3.png" style="width:50%">
 				<p>Mapa 3</p>
 			</div>
 		</label>
 
 		<label class="radiolabel">
 			<input type="radio" id="map4" name="mapselect" value="4">
-			<div class="radiobtn"> <img src="img/mapas/mapa4.png" style="width:25%">
+			<div class="radiobtn"> <img src="img/mapas/mapa4.png" style="width:60%">
 				<p>Mapa 4</p>
 			</div>
 		</label>
-
-		<button class="mainbtns" onclick="startGame()">Jogar</button>
 	</div>
+
+	<button class="mainbtns" onclick="startGame()">Jogar</button>
 
 	<canvas id="jogo" width="512" height="512" style="display:none">
 		<h3>O seu browser não suporta o canvas. Contate o desenvolvedor.</h3>
