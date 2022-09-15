@@ -2,10 +2,16 @@ var ctx = null;
 var currMap = null;
 var canvas = null;
 
+var ctxDado = null;
+var canvasDado = null;
+
+var numDado = 1;
+
 var numberOfPlayers = 1;
 var mapaSelecionado = 1;
 
 var tileSetImage = new Image();
+var tileSetDado = new Image();
 const tWidth = 32;
 const tHeight = tWidth;
 
@@ -109,18 +115,47 @@ function getRandomInt(min, max) {
 window.onload = function () {
     canvas = document.getElementById("jogo");
     ctx = canvas.getContext("2d");
+
+    canvasDado = document.getElementById("dado");
+    ctxDado = canvasDado.getContext("2d");
+}
+
+function rodarDado() {
+    numDado++;
+    drawGame();
+}
+
+function drawDado(number) {
+    if (ctxDado == null) { return; }
+
+    ctxDado.clearRect(0, 0, canvasDado.width, canvasDado.height);
+
+    switch (number) {
+        case 1:
+            ctxDado.drawImage(tileSetDado, 0, 0, 32, 32, 0, 0, 128, 128);
+            break;
+        case 2:
+            ctxDado.drawImage(tileSetDado, 32, 0, 32, 32, 0, 0, 128, 128);
+            break;
+        case 3:
+            ctxDado.drawImage(tileSetDado, 64, 0, 32, 32, 0, 0, 128, 128);
+            break;
+        case 4:
+            ctxDado.drawImage(tileSetDado, 0, 32, 32, 32, 0, 0, 128, 128);
+            break;
+        case 5:
+            ctxDado.drawImage(tileSetDado, 32, 32, 32, 32, 0, 0, 128, 128);
+            break;
+        case 6:
+            ctxDado.drawImage(tileSetDado, 64, 32, 32, 32, 0, 0, 128, 128);
+            break;
+    }
 }
 
 function drawGame() {
     if (ctx == null) { return; }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    var img = new Image();
-
-    img.onload = function () {
-        ctx.drawImage(img, 0, 0);
-        console.log("image loaded: " + img.src);
-    }
+    drawDado(numDado);
 
     for (var y = 0, i = 0; y < currMap.mHeight; y += tHeight) {
         for (var x = 0; x < currMap.mWidth; x += tWidth) {
@@ -165,6 +200,12 @@ tileSetImage.onload = function () {
 
 tileSetImage.src = "img/tileset.png";
 
+tileSetDado.onload = function () {
+    drawGame();
+}
+
+tileSetDado.src = "img/dados_tileset.png";
+
 function toggleScreen(id, toggle) {
     let element = document.getElementById(id);
     let display = (toggle) ? "block" : "none";
@@ -175,6 +216,7 @@ function startGame() {
     toggleScreen("mainmenu", false);
     toggleScreen("jogo", true);
     toggleScreen("voltar", true);
+    toggleScreen("dado", true);
     numberOfPlayers = document.getElementById("players").value;
     mapaSelecionado = parseInt(document.querySelector('input[name="mapselect"]:checked').value);
     console.log("numero de players: " + numberOfPlayers);
@@ -202,4 +244,5 @@ function voltar() {
     toggleScreen("mainmenu", true);
     toggleScreen("jogo", false);
     toggleScreen("voltar", false);
+    toggleScreen("dado", false);
 }
