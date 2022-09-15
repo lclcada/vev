@@ -1,13 +1,13 @@
 from PIL import Image
 
 im = Image.open('mapa.png')
-pix = im.load()
+im = im.convert('RGB')
 width, height = im.size
 out = []
 
 for y in range(0, height):
     for x in range(0, width):
-        r, g, b = pix[x, y]
+        r, g, b = im.getpixel((x, y))
         if(r == 0 and g == 0 and b == 255):
             out.append(8)
         elif(r == 255 and g == 255 and b == 0):
