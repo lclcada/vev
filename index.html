@@ -23,45 +23,53 @@
 
 	<div id="mainmenu">
 		<div class="center">
-			<label for="players">Número de jogadores: </label>
+			<label for="players">Número de jogadores:</label>
 			<input type="number" class="number" id="players" name="players" min="1" max="5" value="1"
 				onkeyup="if(parseInt(this.value)>5){this.value=5;} else if(parseInt(this.value)<1){this.value=1;} else if(this.value=='') {this.value=1;}">
 		</div>
-		<br><br>
+
+		<h1 class="center">Mapa:</h1>
 
 		<div class="mapselection">
 			<label class="radiolabel">
-				<input type="radio" id="map1" name="mapselect" value="1" checked="true">
+				<input type="radio" name="mapselect" value="1" checked="true">
 				<div class="radiobtn"> <img src="img/mapas/mapa1.png" class="radioimage">
 					<p class="pmapa">Cobra Coral</p>
 				</div>
 			</label>
 
 			<label class="radiolabel">
-				<input type="radio" id="map2" name="mapselect" value="2">
+				<input type="radio" name="mapselect" value="2">
 				<div class="radiobtn"> <img src="img/mapas/mapa2.png" class="radioimage">
-					<p class="pmapa">Bulgária</p>
+					<p class="pmapa">Padrão</p>
 				</div>
 			</label>
 
 			<label class="radiolabel">
-				<input type="radio" id="map3" name="mapselect" value="3">
+				<input type="radio" name="mapselect" value="3">
 				<div class="radiobtn"> <img src="img/mapas/mapa3.png" class="radioimage">
 					<p class="pmapa">Trilhas</p>
 				</div>
 			</label>
 
 			<label class="radiolabel">
-				<input type="radio" id="map4" name="mapselect" value="4">
+				<input type="radio" name="mapselect" value="4">
 				<div class="radiobtn"> <img src="img/mapas/mapa4.png" class="radioimage">
 					<p class="pmapa">Caminho da Morte</p>
 				</div>
 			</label>
 
 			<label class="radiolabel">
-				<input type="radio" id="map5" name="mapselect" value="5">
+				<input type="radio" name="mapselect" value="5">
 				<div class="radiobtn"> <img src="img/mapas/mapa5.png" class="radioimage">
 					<p class="pmapa">Viagem</p>
+				</div>
+			</label>
+
+			<label class="radiolabel">
+				<input type="radio" name="mapselect" value="6">
+				<div class="radiobtn"> <img src="img/mapas/mapa6.png" class="radioimage">
+					<p class="pmapa">Caminho da Sorte</p>
 				</div>
 			</label>
 		</div>
@@ -70,14 +78,18 @@
 		<div class="center"><button class="mainbtns" onclick="startGame()">Jogar</button></div>
 	</div>
 
-	<div class="canvases">
-		<canvas id="jogo" width="512" height="512" style="display:none">O seu browser não suporta canvas. Contate o desenvolvedor</canvas>
+	<div id="gamehidden" style="display: none">
+		<div class="canvases">
+			<div class="dadoclass"><canvas id="infobox" width="128" height="128"></canvas></div>
 
-		<div class="dadoclass"><canvas id="dado" width="128" height="128" onclick="rodarDado()" style="display:none">Canvas do dado</canvas></div>
-	</div>
-	<div class="center"><button class="mainbtns" id="voltar" onclick="voltar()" style="display:none">Voltar</button>
-	</div>
+			<canvas id="jogo" width="512" height="512">Esse browser não suporta o jogo</canvas>
 
+			<div class="dadoclass"><canvas id="dado" width="128" height="128" onclick="rodarDado()">Canvas do
+					dado</canvas></div>
+		</div>
+		<div class="center"><button class="mainbtns" id="voltar" onclick="voltar()">Voltar</button>
+		</div>
+	</div>
 	<script src="index.js"></script>
 </body>
 

@@ -192,6 +192,10 @@ p {
 	.itemmenu a {
 		font-size: 90%;
 	}
+
+	.canvases{
+		scale: 50%;
+	}
 }
 
 @media (max-width: 350px) {
@@ -201,6 +205,10 @@ p {
 
 	.pmapa {
 		font-size: 40%;
+	}
+
+	.canvases{
+		scale: 30%;
 	}
 }
 
