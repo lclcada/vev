@@ -45,7 +45,7 @@ class Player {
 }
 
 let arrMapa1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 9, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const mapa1 = new Mapa(arrMapa1, 576, 576);
+const mapa1 = new Mapa(arrMapa1, 18*32, 18*32);
 
 let arrMapa2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 8, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 0,
@@ -65,7 +65,7 @@ let arrMapa2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
     0, 9, 1, 3, 0, 0, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const mapa2 = new Mapa(arrMapa2, 576, 576);
+const mapa2 = new Mapa(arrMapa2, 18*32, 18*32);
 
 let arrMapa3 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 8, 0,
@@ -85,7 +85,7 @@ let arrMapa3 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 2, 0, 0, 3, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 9, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const mapa3 = new Mapa(arrMapa3, 832, 576);
+const mapa3 = new Mapa(arrMapa3, 26*32, 18*32);
 
 let arrMapa4 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -94,7 +94,25 @@ let arrMapa4 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const mapa4 = new Mapa(arrMapa4, 512, 224);
+const mapa4 = new Mapa(arrMapa4, 16*32, 7*32);
+
+let arrmapa5 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 8, 0,
+    0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 3, 2, 1, 2, 3, 0, 1, 3, 2, 1, 0, 0, 2, 3, 1, 0, 1, 3, 2, 1, 2, 3, 1, 0, 3, 1, 3, 2, 1, 2, 0,
+    0, 1, 0, 0, 0, 1, 0, 2, 0, 0, 5, 0, 0, 1, 0, 3, 0, 3, 0, 0, 0, 0, 0, 5, 0, 2, 0, 0, 0, 0, 3, 0,
+    0, 3, 0, 0, 0, 3, 0, 3, 0, 3, 1, 3, 0, 2, 0, 2, 4, 2, 0, 0, 0, 2, 3, 1, 0, 1, 2, 3, 1, 0, 1, 0,
+    0, 2, 0, 0, 0, 2, 0, 1, 0, 2, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 4, 0, 7, 0,
+    0, 1, 0, 0, 0, 1, 0, 3, 0, 7, 0, 1, 0, 7, 0, 0, 0, 1, 3, 2, 0, 2, 0, 1, 3, 2, 1, 2, 3, 0, 1, 0,
+    0, 2, 0, 0, 0, 2, 0, 2, 0, 2, 0, 2, 0, 3, 2, 1, 0, 3, 0, 1, 0, 3, 0, 3, 0, 0, 0, 0, 2, 0, 3, 0,
+    0, 3, 0, 0, 0, 3, 0, 1, 0, 3, 0, 3, 0, 0, 0, 2, 0, 2, 0, 3, 0, 1, 0, 2, 0, 0, 0, 0, 1, 0, 2, 0,
+    0, 1, 0, 0, 0, 1, 0, 2, 0, 1, 0, 1, 0, 3, 1, 3, 0, 1, 0, 2, 0, 3, 0, 1, 0, 0, 0, 0, 2, 0, 1, 0,
+    0, 3, 2, 1, 2, 3, 0, 3, 0, 3, 0, 3, 0, 2, 0, 0, 0, 2, 0, 1, 0, 2, 0, 2, 0, 2, 2, 2, 3, 0, 2, 0,
+    0, 0, 0, 2, 0, 0, 0, 1, 0, 2, 1, 2, 0, 1, 2, 3, 1, 3, 0, 2, 0, 1, 0, 3, 0, 0, 0, 0, 1, 0, 3, 0,
+    0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 3, 0, 1, 0,
+    0, 0, 0, 4, 3, 2, 1, 2, 0, 0, 1, 2, 3, 1, 3, 1, 2, 3, 1, 0, 3, 1, 5, 1, 3, 2, 1, 2, 3, 0, 9, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const mapa5 = new Mapa(arrmapa5, 32*32, 16*32);
 
 
 function getRandomInt(min, max) {
@@ -108,6 +126,7 @@ function getRandomInt(min, max) {
 //2 = positivo
 //3 = negativo
 //4 = santuario
+//5 = aleatorio
 //7 = cemiterio
 //8 = inicio
 //9 = fim
@@ -121,7 +140,12 @@ window.onload = function () {
 }
 
 function rodarDado() {
-    numDado++;
+    numDado = getRandomInt(1, 6);
+    canvasDado.style = "border: 3px solid #04AA6D";
+    setTimeout(function() {
+        canvasDado.style = "border: 3px solid white";
+    }, 200);
+
     drawGame();
 }
 
@@ -138,7 +162,7 @@ function drawDado(number) {
             ctxDado.drawImage(tileSetDado, 32, 0, 32, 32, 0, 0, 128, 128);
             break;
         case 3:
-            ctxDado.drawImage(tileSetDado, 64, 0, 32, 32, 0, 0, 128, 128);
+            ctxDado.drawImage(tileSetDado, 2*32, 0, 32, 32, 0, 0, 128, 128);
             break;
         case 4:
             ctxDado.drawImage(tileSetDado, 0, 32, 32, 32, 0, 0, 128, 128);
@@ -147,7 +171,7 @@ function drawDado(number) {
             ctxDado.drawImage(tileSetDado, 32, 32, 32, 32, 0, 0, 128, 128);
             break;
         case 6:
-            ctxDado.drawImage(tileSetDado, 64, 32, 32, 32, 0, 0, 128, 128);
+            ctxDado.drawImage(tileSetDado, 2*32, 32, 32, 32, 0, 0, 128, 128);
             break;
     }
 }
@@ -160,32 +184,38 @@ function drawGame() {
     for (var y = 0, i = 0; y < currMap.mHeight; y += tHeight) {
         for (var x = 0; x < currMap.mWidth; x += tWidth) {
             switch (currMap.array[i]) {
-                case 0:
+                case 0: //casa null
                     ctx.drawImage(tileSetImage, 0, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
-                case 1:
+                case 1: //casa vazia
                     ctx.drawImage(tileSetImage, 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
-                case 2:
-                    ctx.drawImage(tileSetImage, 64, 0, tWidth, tHeight, x, y, tWidth, tHeight);
+                case 2: //positivo
+                    ctx.drawImage(tileSetImage, 2 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
-                case 3:
-                    ctx.drawImage(tileSetImage, 96, 0, tWidth, tHeight, x, y, tWidth, tHeight);
+                case 3: //negativo
+                    ctx.drawImage(tileSetImage, 3 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
-                case 4:
-                    ctx.drawImage(tileSetImage, 128, 0, tWidth, tHeight, x, y, tWidth, tHeight);
+                case 4: //santuario
+                    ctx.drawImage(tileSetImage, 4 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
-                case 7:
-                    ctx.drawImage(tileSetImage, 160, 0, tWidth, tHeight, x, y, tWidth, tHeight);
+                case 5: //aleatorio
+                    ctx.drawImage(tileSetImage, 5 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
-                case 8:
-                    ctx.drawImage(tileSetImage, 192, 0, tWidth, tHeight, x, y, tWidth, tHeight);
+                case 5: //unused
+                    ctx.drawImage(tileSetImage, 6 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
-                case 9:
-                    ctx.drawImage(tileSetImage, 224, 0, tWidth, tHeight, x, y, tWidth, tHeight);
+                case 7: //cemiterio
+                    ctx.drawImage(tileSetImage, 7 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
+                    break;
+                case 8: //inicio
+                    ctx.drawImage(tileSetImage, 8 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
+                    break;
+                case 9: //fim
+                    ctx.drawImage(tileSetImage, 9 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
                 default:
-                    ctx.drawImage(tileSetImage, 256, 0, tWidth, tHeight, x, y, tWidth, tHeight);
+                    ctx.drawImage(tileSetImage, 10 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
             }
             i++;
@@ -217,6 +247,7 @@ function startGame() {
     toggleScreen("jogo", true);
     toggleScreen("voltar", true);
     toggleScreen("dado", true);
+    canvasDado.style = "border: 3px solid white";
     numberOfPlayers = document.getElementById("players").value;
     mapaSelecionado = parseInt(document.querySelector('input[name="mapselect"]:checked').value);
     console.log("numero de players: " + numberOfPlayers);
@@ -234,6 +265,11 @@ function startGame() {
         case 4:
             currMap = mapa4;
             break;
+        case 5:
+            currMap = mapa5;
+            break;
+        default:
+            currMap = mapa1;
     }
     canvas.width = currMap.mWidth;
     canvas.height = currMap.mHeight;
