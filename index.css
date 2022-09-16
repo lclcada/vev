@@ -79,7 +79,7 @@ label {
 }
 
 .radioimage {
-	width: 80%;
+	width: 90%;
 	padding-top: 10%;
 }
 
@@ -87,7 +87,6 @@ label {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 25%;
 }
 
 .radiolabel>input {
@@ -103,7 +102,6 @@ label {
 }
 
 .radiobtn {
-	width: 50%;
 	border-radius: 10px;
 	position: relative;
 }
