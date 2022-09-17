@@ -1,31 +1,92 @@
-var ctx = null;
+var ctx = null, canvas = null, ctxDado = null, canvasDado = null;
 var currMap = null;
-var canvas = null;
 
-var ctxDado = null;
-var canvasDado = null;
+const l = "l", r = "r", u = "u", d = "d", e = "end";
+const tWidth = 32, tHeight = tWidth;
 
 var numDado = 1;
-
 var numberOfPlayers = 1;
 var mapaSelecionado = 1;
 
 var tileSetImage = new Image();
 var tileSetDado = new Image();
-const tWidth = 32;
-const tHeight = tWidth;
 
-var negativeList = [["-1", true], ["-3", true], ["-10", true], ["/2", true], ["pav", true]];
-var positiveList = [["+1", true], ["+3", true], ["+10", true], ["x2", true], ["jdn", true]];
+var positiveList = [[0, true], [1, true], [2, true], [3, true], [4, true]];
+var negativeList = [[0, true], [1, true], [2, true], [3, true], [4, true]];
+//0 = +-1
+//1 = +-3
+//2 = +-10
+//3 = x/2
+//4 = jdn/pav
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 class Mapa {
     array;
+    mapArray;
     mWidth;
     mHeight;
-    constructor(array, mWidth, mHeight) {
+
+    constructor(array, mWidth, mHeight, direct) {
         this.array = array; //quando for passar a array, adicionar explicitamente o inicio e o fim, e garantir o tamanho.
         this.mWidth = mWidth;
         this.mHeight = mHeight;
+
+        var mapArray = [];
+        for (var i = 0; i < array.length; i++) {
+            let tp, mod, dir;
+            let enabledArray = [], disabledArray = [];
+            tp = array[i];
+            var directCount = 0;
+
+            if (array[i] != 0) {
+                dir = direct[directCount];
+                directCount++;
+            }
+
+            if (array[i] == 2) {
+                let posEnabled = 0;
+                for (var j = 0; j < positiveList.length; j++) {
+                    if (positiveList[j][1] == true) {
+                        enabledArray[posEnabled] = positiveList[j][0];
+                        posEnabled++;
+                    }
+                }
+                //if (posEnabled == 0) { console.log("¯\_(ツ)_/¯"); break; }
+                mod = enabledArray[getRandomInt(0, posEnabled)];
+            }
+            else if (array[i] == 3) {
+                let posDisabled = 0;
+                for (var j = 0; j < negativeList.length; j++) {
+                    if (negativeList[j][1] == true) {
+                        disabledArray[posDisabled] = negativeList[j][0];
+                        posDisabled++;
+                    }
+                }
+                if (posDisabled == 0) { console.log("¯\_(ツ)_/¯"); break; }
+                mod = disabledArray[getRandomInt(0, posDisabled)];
+            }
+
+            let c = new Casa(tp, mod, dir);
+            mapArray.push(c);
+        }
+
+        this.mapArray = mapArray;
+        console.log(mapArray[37].modificador);
+    }
+}
+
+class Casa {
+    tipo;
+    modificador;
+    direcao;
+    constructor(tipo, modificador, direcao) {
+        this.tipo = tipo;
+        this.modificador = modificador;
+        this.direcao = direcao;
     }
 }
 
@@ -44,8 +105,9 @@ class Player {
     }
 }
 
+let dirMapa1 = [d, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, d, d, l, l, l, l, l, l, l, l, l, l, l, l, l, l, l, d, d, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, d, d, l, l, l, l, l, l, l, l, l, l, l, l, l, l, l, d, d, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, d, d, l, l, l, l, l, l, l, l, l, l, l, l, l, l, l, d, d, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, d, d, l, l, l, l, l, l, l, l, l, l, l, l, l, l, e];
 let arrMapa1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 9, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const mapa1 = new Mapa(arrMapa1, 18 * 32, 18 * 32);
+const mapa1 = new Mapa(arrMapa1, 18 * 32, 18 * 32, dirMapa1);
 
 let arrMapa2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 8, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 0,
@@ -65,7 +127,7 @@ let arrMapa2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
     0, 9, 1, 3, 0, 0, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const mapa2 = new Mapa(arrMapa2, 18 * 32, 18 * 32);
+const mapa2 = new Mapa(arrMapa2, 18 * 32, 18 * 32, dirMapa1);
 
 let arrMapa3 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 8, 0,
@@ -85,7 +147,7 @@ let arrMapa3 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 2, 0, 0, 3, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 9, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const mapa3 = new Mapa(arrMapa3, 26 * 32, 18 * 32);
+const mapa3 = new Mapa(arrMapa3, 26 * 32, 18 * 32, dirMapa1);
 
 let arrMapa4 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -94,7 +156,7 @@ let arrMapa4 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const mapa4 = new Mapa(arrMapa4, 16 * 32, 7 * 32);
+const mapa4 = new Mapa(arrMapa4, 16 * 32, 7 * 32, dirMapa1);
 
 let arrmapa5 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 8, 0,
@@ -112,7 +174,7 @@ let arrmapa5 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 3, 0, 1, 0,
     0, 0, 0, 4, 3, 2, 1, 2, 0, 0, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 0, 3, 1, 5, 1, 3, 2, 1, 2, 0, 9, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const mapa5 = new Mapa(arrmapa5, 32 * 32, 16 * 32);
+const mapa5 = new Mapa(arrmapa5, 32 * 32, 16 * 32, dirMapa1);
 
 let arrmapa6 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 2, 4, 2, 0, 2, 4, 2, 0, 2, 4, 2, 0, 2, 4, 2, 0, 2, 4, 2, 0, 2, 9, 0,
@@ -131,13 +193,7 @@ let arrmapa6 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 0,
     0, 8, 0, 2, 2, 2, 0, 2, 2, 2, 0, 2, 2, 2, 0, 2, 2, 2, 0, 2, 2, 2, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const mapa6 = new Mapa(arrmapa6, 24 * 32, 17 * 32);
-
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+const mapa6 = new Mapa(arrmapa6, 24 * 32, 17 * 32, dirMapa1);
 
 //0 = casa void
 //1 = casa vazia
@@ -153,6 +209,7 @@ window.onload = function () {
     canvas = document.getElementById("jogo");
     ctx = canvas.getContext("2d");
 
+    console.log("WINDOW LOADED");
     canvasDado = document.getElementById("dado");
     ctxDado = canvasDado.getContext("2d");
 }
@@ -210,9 +267,13 @@ function drawGame() {
                     break;
                 case 2: //positivo
                     ctx.drawImage(tileSetImage, 2 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
+                    //console.log(currMap.mapArray[i]);
+                    ctx.drawImage(tileSetImage, currMap.mapArray[i].modificador*32, 3*32, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
                 case 3: //negativo
                     ctx.drawImage(tileSetImage, 3 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
+                    console.log(currMap.mapArray[i]);
+                    ctx.drawImage(tileSetImage, currMap.mapArray[i].modificador*32, 4*32, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
                 case 4: //santuario
                     ctx.drawImage(tileSetImage, 4 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
