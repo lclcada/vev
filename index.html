@@ -80,12 +80,14 @@
 
 	<div id="gamehidden" style="display: none">
 		<div class="canvases">
-			<div class="dadoclass"><canvas id="infobox" width="128" height="128"></canvas></div>
-
 			<canvas id="jogo" width="512" height="512">Esse browser não suporta o jogo</canvas>
 
-			<div class="dadoclass"><canvas id="dado" width="128" height="128" onclick="rodarDado()">Canvas do
-					dado</canvas></div>
+			<div class="dadoclass">
+				<canvas id="infoboxtop" width="128" height="128" style="border: 2px solid gold"></canvas>
+				<canvas id="dado" width="128" height="128" onclick="rodarDado()">Canvas do dado</canvas>
+				<canvas id="infoboxbottom" width="128" height="128" style="border: 2px solid gold"></canvas>
+			</div>
+
 		</div>
 		<div class="center"><button class="mainbtns" id="voltar" onclick="voltar()">Voltar</button>
 		</div>
