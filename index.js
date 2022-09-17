@@ -24,6 +24,18 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function weightedRand(spec) {
+    var i, j, table = [];
+    for (i in spec) {
+        for (j = 0; j < spec[i] * 10; j++) {
+            table.push(i);
+        }
+    }
+    return function () {
+        return table[Math.floor(Math.random() * table.length)];
+    }
+}
+
 class Mapa {
     array;
     mapArray;
@@ -37,7 +49,7 @@ class Mapa {
 
         var mapArray = [];
         for (var i = 0; i < array.length; i++) {
-            let tp, mod, dir;
+            let tp = null, mod = null, dir = null;
             let enabledArray = [], disabledArray = [];
             tp = array[i];
             var directCount = 0;
@@ -55,8 +67,10 @@ class Mapa {
                         posEnabled++;
                     }
                 }
-                //if (posEnabled == 0) { console.log("¯\_(ツ)_/¯"); break; }
-                mod = enabledArray[getRandomInt(0, posEnabled)];
+                if (posEnabled == 0) { console.log("¯\_(ツ)_/¯"); break; }
+                let rnd = weightedRand({ 0: 0.3, 1: 0.25, 2: 0.1, 3: 0.15, 4: 0.2 });
+                rnd = rnd();
+                mod = enabledArray[getRandomInt(0, posEnabled - 1)];
             }
             else if (array[i] == 3) {
                 let posDisabled = 0;
@@ -67,7 +81,9 @@ class Mapa {
                     }
                 }
                 if (posDisabled == 0) { console.log("¯\_(ツ)_/¯"); break; }
-                mod = disabledArray[getRandomInt(0, posDisabled)];
+                let rnd = weightedRand({ 0: 0.3, 1: 0.25, 2: 0.1, 3: 0.15, 4: 0.2 });
+                rnd = rnd();
+                mod = disabledArray[getRandomInt(0, posDisabled - 1)];
             }
 
             let c = new Casa(tp, mod, dir);
@@ -75,7 +91,6 @@ class Mapa {
         }
 
         this.mapArray = mapArray;
-        console.log(mapArray[37].modificador);
     }
 }
 
@@ -268,12 +283,12 @@ function drawGame() {
                 case 2: //positivo
                     ctx.drawImage(tileSetImage, 2 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     //console.log(currMap.mapArray[i]);
-                    ctx.drawImage(tileSetImage, currMap.mapArray[i].modificador*32, 3*32, tWidth, tHeight, x, y, tWidth, tHeight);
+                    ctx.drawImage(tileSetImage, currMap.mapArray[i].modificador * 32, 3 * 32, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
                 case 3: //negativo
                     ctx.drawImage(tileSetImage, 3 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     console.log(currMap.mapArray[i]);
-                    ctx.drawImage(tileSetImage, currMap.mapArray[i].modificador*32, 4*32, tWidth, tHeight, x, y, tWidth, tHeight);
+                    ctx.drawImage(tileSetImage, currMap.mapArray[i].modificador * 32, 4 * 32, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
                 case 4: //santuario
                     ctx.drawImage(tileSetImage, 4 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);

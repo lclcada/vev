@@ -28,7 +28,7 @@
 				onkeyup="if(parseInt(this.value)>5){this.value=5;} else if(parseInt(this.value)<1){this.value=1;} else if(this.value=='') {this.value=1;}">
 		</div>
 
-		<h1 class="center">Mapa:</h1>
+		<h2 class="center">Mapa:</h2>
 
 		<div class="mapselection">
 			<label class="radiolabel">
@@ -80,7 +80,8 @@
 
 	<div id="gamehidden" style="display: none">
 		<div class="canvases">
-			<canvas id="jogo" width="512" height="512">Esse browser não suporta o jogo</canvas>
+			<div class="center"><canvas id="jogo" width="512" height="512">Esse browser não suporta o jogo</canvas>
+			</div>
 
 			<div class="dadoclass">
 				<canvas id="infoboxtop" width="128" height="128" style="border: 2px solid gold"></canvas>
