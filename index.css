@@ -24,6 +24,10 @@ h3 {
 	font-family: "Titillium Web", sans-serif;
 }
 
+img {
+	image-rendering: pixelated;
+}
+
 .canvases {
 	display: flex;
 	justify-content: center;
