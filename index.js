@@ -270,6 +270,7 @@ const mapa9 = new Mapa(arrmapa9, 24 * 32, 16 * 32, dirMapa1);
 //3 = negativo
 //4 = santuario
 //5 = aleatorio
+//6 = teleport
 //7 = cemiterio
 //8 = inicio
 //9 = fim
@@ -278,9 +279,18 @@ window.onload = function () {
     canvas = document.getElementById("jogo");
     ctx = canvas.getContext("2d");
 
-    console.log("WINDOW LOADED");
     canvasDado = document.getElementById("dado");
     ctxDado = canvasDado.getContext("2d");
+}
+
+function animarDado() {
+    requestAnimationFrame(animarDado);
+    var dadox = 0, dadoy = 0;
+    ctxDado.drawImage(tileSetDado, 0, 0, 32, 32, dadox, dadoy, 128, 128);
+
+    dadox++;
+    dadoy++;
+    console.log(dadox + dadoy);
 }
 
 function rodarDado() {
@@ -289,8 +299,7 @@ function rodarDado() {
     setTimeout(function () {
         canvasDado.style = "border: 3px solid white";
     }, 200);
-
-    drawGame();
+    //animarDado();
 }
 
 function drawDado(number) {
@@ -336,13 +345,11 @@ function drawGame() {
                     break;
                 case 2: //positivo
                     ctx.drawImage(tileSetImage, 2 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
-                    //console.log(currMap.mapArray[i]);
-                    ctx.drawImage(tileSetImage, currMap.mapArray[i].modificador * 32, 3 * 32, tWidth, tHeight, x, y, tWidth, tHeight);
+                    ctx.drawImage(tileSetImage, currMap.mapArray[i].modificador * 32, 2 * 32, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
                 case 3: //negativo
                     ctx.drawImage(tileSetImage, 3 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
-                    console.log(currMap.mapArray[i]);
-                    ctx.drawImage(tileSetImage, currMap.mapArray[i].modificador * 32, 4 * 32, tWidth, tHeight, x, y, tWidth, tHeight);
+                    ctx.drawImage(tileSetImage, currMap.mapArray[i].modificador * 32, 3 * 32, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
                 case 4: //santuario
                     ctx.drawImage(tileSetImage, 4 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
@@ -350,7 +357,7 @@ function drawGame() {
                 case 5: //aleatorio
                     ctx.drawImage(tileSetImage, 5 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
-                case 6: //unused
+                case 6: //teleport
                     ctx.drawImage(tileSetImage, 6 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
                 case 7: //cemiterio
@@ -362,8 +369,14 @@ function drawGame() {
                 case 9: //fim
                     ctx.drawImage(tileSetImage, 9 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
-                default:
+                case 10: //escolha
                     ctx.drawImage(tileSetImage, 10 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
+                    break;
+                case 11: //vai e volta
+                    ctx.drawImage(tileSetImage, 11 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
+                    break;
+                default:
+                    ctx.drawImage(tileSetImage, 15 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
             }
             i++;
