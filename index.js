@@ -25,7 +25,7 @@ function getRandomInt(min, max) {
 }
 
 function weightedRand(spec) {
-    var i, j, table = [];
+    let i, j, table = [];
     for (i in spec) {
         for (j = 0; j < spec[i] * 10; j++) {
             table.push(i);
@@ -48,11 +48,11 @@ class Mapa {
         this.mHeight = mHeight;
 
         var mapArray = [];
-        for (var i = 0; i < array.length; i++) {
+        for (let i = 0; i < array.length; i++) {
             let tp = null, mod = null, dir = null;
             let enabledArray = [], disabledArray = [];
             tp = array[i];
-            var directCount = 0;
+            let directCount = 0;
 
             if (array[i] != 0) {
                 dir = direct[directCount];
@@ -61,7 +61,7 @@ class Mapa {
 
             if (array[i] == 2) {
                 let posEnabled = 0;
-                for (var j = 0; j < positiveList.length; j++) {
+                for (let j = 0; j < positiveList.length; j++) {
                     if (positiveList[j][1] == true) {
                         enabledArray[posEnabled] = positiveList[j][0];
                         posEnabled++;
@@ -74,7 +74,7 @@ class Mapa {
             }
             else if (array[i] == 3) {
                 let posDisabled = 0;
-                for (var j = 0; j < negativeList.length; j++) {
+                for (let j = 0; j < negativeList.length; j++) {
                     if (negativeList[j][1] == true) {
                         disabledArray[posDisabled] = negativeList[j][0];
                         posDisabled++;
@@ -210,6 +210,60 @@ let arrmapa6 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 const mapa6 = new Mapa(arrmapa6, 24 * 32, 17 * 32, dirMapa1);
 
+let arrmapa7 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 2, 1, 2, 3, 1, 0, 0, 1, 3, 2, 1, 2, 0, 0,
+    0, 0, 3, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 3, 0, 0,
+    0, 0, 1, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 1, 0, 0,
+    0, 0, 3, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 3, 0, 0,
+    0, 0, 2, 1, 8, 0, 2, 0, 0, 2, 0, 9, 1, 2, 0, 0,
+    0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 0, 0,
+    0, 3, 1, 3, 2, 1, 2, 0, 0, 2, 1, 2, 3, 1, 3, 0,
+    0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
+    0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0,
+    0, 0, 3, 1, 3, 0, 0, 0, 0, 0, 0, 3, 1, 3, 0, 0,
+    0, 0, 0, 0, 2, 1, 5, 1, 1, 5, 1, 2, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const mapa7 = new Mapa(arrmapa7, 16 * 32, 16 * 32, dirMapa1);
+
+let arrmapa8 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 8, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 4, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0,
+    0, 7, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 4, 0, 1, 0,
+    0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 1, 0,
+    0, 1, 0, 5, 1, 2, 3, 1, 3, 2, 5, 0, 3, 0, 2, 0,
+    0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 2, 0, 1, 0, 3, 0,
+    0, 3, 0, 2, 0, 7, 2, 3, 1, 0, 3, 0, 3, 0, 1, 0,
+    0, 1, 0, 3, 0, 2, 0, 0, 9, 0, 1, 0, 2, 0, 3, 0,
+    0, 3, 0, 1, 0, 3, 0, 0, 0, 0, 3, 0, 1, 0, 2, 0,
+    0, 2, 0, 3, 0, 4, 3, 2, 1, 2, 7, 0, 2, 0, 1, 0,
+    0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 2, 0,
+    0, 2, 0, 5, 2, 3, 1, 3, 2, 1, 2, 3, 5, 0, 3, 0,
+    0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+    0, 4, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 7, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const mapa8 = new Mapa(arrmapa8, 16 * 32, 16 * 32, dirMapa1);
+
+let arrmapa9 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 8, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 1, 0, 7, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 5, 0,
+    0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+    0, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 0, 3, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 0,
+    0, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 0, 2, 0,
+    0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0,
+    0, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 0, 1, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 3, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0,
+    0, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 0, 1, 0,
+    0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
+    0, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 2, 1, 2, 3, 1, 3, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const mapa9 = new Mapa(arrmapa9, 24 * 32, 16 * 32, dirMapa1);
+
 //0 = casa void
 //1 = casa vazia
 //2 = positivo
@@ -296,7 +350,7 @@ function drawGame() {
                 case 5: //aleatorio
                     ctx.drawImage(tileSetImage, 5 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
-                case 5: //unused
+                case 6: //unused
                     ctx.drawImage(tileSetImage, 6 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
                 case 7: //cemiterio
@@ -362,6 +416,15 @@ function startGame() {
             break;
         case 6:
             currMap = mapa6;
+            break;
+        case 7:
+            currMap = mapa7;
+            break;
+        case 8:
+            currMap = mapa8;
+            break;
+        case 9:
+            currMap = mapa9;
             break;
         default:
             currMap = mapa1;
