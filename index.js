@@ -1,5 +1,5 @@
 var ctx = null, canvas = null, ctxDado = null, canvasDado = null;
-var currMap = null;
+var currMap = null, maxPlayers = 5;
 
 const l = "l", r = "r", u = "u", d = "d", e = "end";
 const tWidth = 32, tHeight = tWidth;
@@ -281,6 +281,26 @@ window.onload = function () {
 
     canvasDado = document.getElementById("dado");
     ctxDado = canvasDado.getContext("2d");
+    document.getElementById("contador").innerHTML = "0/" + maxPlayers;
+}
+
+function chechBoxClicado(id) {
+    console.log("clicado");
+    var currentCheckBox = document.getElementById(id);
+    var checkBoxes = document.querySelectorAll(".checkbox");
+    console.log(checkBoxes);
+    var numSelected = 0;
+    checkBoxes.forEach(function (e) {
+        if (e.checked) {
+            numSelected++;
+        }
+    });
+    if (numSelected > maxPlayers) {
+        currentCheckBox.checked = false;
+        numSelected--;
+    }
+    document.getElementById("contador").innerHTML = numSelected + "/" + maxPlayers;
+
 }
 
 function animarDado() {
@@ -397,7 +417,7 @@ function startGame() {
     toggleScreen("mainmenu", false);
     toggleScreen("gamehidden", true);
     canvasDado.style = "border: 3px solid white";
-    
+
     mapaSelecionado = parseInt(document.querySelector('input[name="mapselect"]:checked').value);
     //console.log("numero de players: " + numberOfPlayers);
     console.log("mapa selecionado: " + mapaSelecionado);
