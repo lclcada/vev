@@ -4,7 +4,7 @@ var currMap = null;
 const l = "l", r = "r", u = "u", d = "d", e = "end";
 const tWidth = 32, tHeight = tWidth;
 
-var numDado = 1;
+var numDado = 0;
 var numberOfPlayers = 1;
 var mapaSelecionado = 1;
 
@@ -284,22 +284,22 @@ window.onload = function () {
 }
 
 function animarDado() {
-    requestAnimationFrame(animarDado);
-    var dadox = 0, dadoy = 0;
-    ctxDado.drawImage(tileSetDado, 0, 0, 32, 32, dadox, dadoy, 128, 128);
+    for (let x = 0; x < 128; x++) {
+        //ctxDado.clearRect(0, 0, canvasDado.width, canvasDado.height);
+        ctxDado.drawImage(tileSetDado, numDado * 32, 0, 32, 32, x, 0, 128, 128);
 
-    dadox++;
-    dadoy++;
-    console.log(dadox + dadoy);
+        console.log(x);
+    }
 }
 
 function rodarDado() {
-    numDado = getRandomInt(1, 6);
+    numDado = getRandomInt(0, 5);
     canvasDado.style = "border: 3px solid #04AA6D";
     setTimeout(function () {
         canvasDado.style = "border: 3px solid white";
     }, 200);
-    //animarDado();
+
+    animarDado();
 }
 
 function drawDado(number) {
@@ -307,26 +307,7 @@ function drawDado(number) {
 
     ctxDado.clearRect(0, 0, canvasDado.width, canvasDado.height);
 
-    switch (number) {
-        case 1:
-            ctxDado.drawImage(tileSetDado, 0, 0, 32, 32, 0, 0, 128, 128);
-            break;
-        case 2:
-            ctxDado.drawImage(tileSetDado, 32, 0, 32, 32, 0, 0, 128, 128);
-            break;
-        case 3:
-            ctxDado.drawImage(tileSetDado, 2 * 32, 0, 32, 32, 0, 0, 128, 128);
-            break;
-        case 4:
-            ctxDado.drawImage(tileSetDado, 0, 32, 32, 32, 0, 0, 128, 128);
-            break;
-        case 5:
-            ctxDado.drawImage(tileSetDado, 32, 32, 32, 32, 0, 0, 128, 128);
-            break;
-        case 6:
-            ctxDado.drawImage(tileSetDado, 2 * 32, 32, 32, 32, 0, 0, 128, 128);
-            break;
-    }
+    ctxDado.drawImage(tileSetDado, number * 32, 0, 32, 32, 0, 0, 128, 128);
 }
 
 function drawGame() {
