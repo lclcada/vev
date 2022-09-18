@@ -151,7 +151,7 @@ label {
 	justify-content: center;
 }
 
-input[type=checkbox] {
+.playerbox input[type=checkbox] {
 	display: none;
 }
 
