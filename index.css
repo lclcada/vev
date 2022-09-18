@@ -28,6 +28,11 @@ img {
 	image-rendering: pixelated;
 }
 
+input[type=checkbox] {
+	height: 30px;
+	width: 30px;
+}
+
 .canvases {
 	display: flex;
 	justify-content: center;
@@ -151,7 +156,7 @@ label {
 	justify-content: center;
 }
 
-.playerbox>input[type=radio] {
+.playerbox>input[type=checkbox] {
 	display: none;
 }
 
