@@ -397,9 +397,9 @@ function startGame() {
     toggleScreen("mainmenu", false);
     toggleScreen("gamehidden", true);
     canvasDado.style = "border: 3px solid white";
-    numberOfPlayers = document.getElementById("players").value;
+    
     mapaSelecionado = parseInt(document.querySelector('input[name="mapselect"]:checked').value);
-    console.log("numero de players: " + numberOfPlayers);
+    //console.log("numero de players: " + numberOfPlayers);
     console.log("mapa selecionado: " + mapaSelecionado);
     switch (mapaSelecionado) {
         case 1:
