@@ -359,6 +359,12 @@ function drawGame() {
                 case 12: //escolha
                     ctx.drawImage(tileSetImage, 12 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
+                case 13: //
+                    ctx.drawImage(tileSetImage, 13 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
+                    break;
+                case 14: //
+                    ctx.drawImage(tileSetImage, 14 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
+                    break;
                 default:
                     ctx.drawImage(tileSetImage, 15 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;

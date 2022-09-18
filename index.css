@@ -112,6 +112,14 @@ label {
 	align-items: center;
 	justify-items: auto;
 	text-align: center;
+	overflow: auto;
+}
+
+.pmapa {
+	font-family: "Cairo", sans-serif;
+	text-align: center;
+	font-size: 16px;
+	color: white;
 }
 
 .number {
