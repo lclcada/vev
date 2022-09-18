@@ -35,7 +35,7 @@ h3 {
 	padding-bottom: 1%;
 }
 
-.dadoclass{
+.dadoclass {
 	padding-left: 5%;
 
 	display: flex;
@@ -123,6 +123,24 @@ label {
 	color: white;
 }
 
+.playernamebox {
+	display: flex;
+	align-items: center;
+	padding-left: 1%;
+}
+
+.playerbox {
+	background-color: #04AA6D;
+	font-family: "Titillium Web", sans-serif;
+	border-radius: 5px;
+	color: white;
+	border-width: 2px;
+	border-style: solid;
+	border-color: white;
+	font-size: 18pt;
+	width: 200px;
+}
+
 .number {
 	background-color: #04AA6D;
 	font-family: "Titillium Web", sans-serif;
@@ -201,7 +219,7 @@ p {
 		font-size: 90%;
 	}
 
-	.canvases{
+	.canvases {
 		scale: 50%;
 	}
 }
@@ -215,7 +233,7 @@ p {
 		font-size: 40%;
 	}
 
-	.canvases{
+	.canvases {
 		scale: 30%;
 	}
 }
