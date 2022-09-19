@@ -146,7 +146,7 @@ label {
 
 .playerselection {
 	display: grid;
-	grid-template-columns: auto auto auto;
+	grid-template-columns: auto auto auto auto auto auto;
 }
 
 .playerbox {
