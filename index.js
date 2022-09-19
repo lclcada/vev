@@ -320,7 +320,6 @@ function chechBoxClicado(id) {
         numSelected--;
     }
     document.getElementById("contador").innerHTML = numSelected + "/" + maxPlayers;
-
 }
 
 function animarDado() {
@@ -436,6 +435,18 @@ function toggleScreen(id, toggle) {
 function startGame() {
     toggleScreen("mainmenu", false);
     toggleScreen("gamehidden", true);
+    let jogadoresBtns = document.querySelectorAll(".checkbox");
+    var jogadoresAtivos = [];
+
+    jogadoresBtns.forEach(function (e) {
+        if (e.checked) {
+            jogadoresAtivos.push([e.value, e.parentNode.querySelector(".radiobtn").querySelector("input").value]);
+            //esse monstro no indice 1 do vetor eh o nome do jogador ¯\_(ツ)_/¯
+        }
+    });
+
+    console.log("Jogador ativo: " + jogadoresAtivos[0]);
+
     canvasDado.style = "border: 3px solid white";
 
     mapaSelecionado = parseInt(document.querySelector('input[name="mapselect"]:checked').value);
