@@ -140,6 +140,10 @@ label {
 	width: 50px;
 }
 
+#contador{
+	color: #04AA6D;
+}
+
 .playerselection {
 	display: grid;
 	grid-template-columns: auto auto auto;
