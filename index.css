@@ -235,32 +235,12 @@ p {
 		font-size: 90%;
 	}
 
-	.pmapa {
-		font-size: 50%;
-	}
-
-	.radioimage {
-		width: 90%;
-		padding-top: 15%;
-	}
-
-	.itemmenu a {
-		font-size: 90%;
-	}
-
 	.canvases {
 		scale: 50%;
 	}
 }
 
 @media (max-width: 350px) {
-	.itemmenu a {
-		font-size: 70%;
-	}
-
-	.pmapa {
-		font-size: 40%;
-	}
 
 	.canvases {
 		scale: 30%;
