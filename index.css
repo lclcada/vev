@@ -234,21 +234,14 @@ p {
 	html {
 		font-size: 90%;
 	}
-
-	.canvases {
-		scale: 50%;
-	}
-}
-
-@media (max-width: 350px) {
-
-	.canvases {
-		scale: 30%;
-	}
 }
 
 .rb {
 	display: inline-block;
 	vertical-align: top;
 	padding-left: 50%;
+}
+
+canvas {
+	width: 100%;
 }
