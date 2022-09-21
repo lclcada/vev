@@ -113,12 +113,18 @@ label {
 }
 
 .mapselection {
+	/*
 	display: flex;
 	align-items: center;
 	justify-items: auto;
 	text-align: center;
 	overflow-x: auto;
 	overflow-y: hidden;
+	*/
+	display: grid;
+	gap: 1rem;
+
+	grid-template-columns: repeat(10, 1fr);
 }
 
 .pmapa {
@@ -140,7 +146,7 @@ label {
 	width: 50px;
 }
 
-#contador{
+#contador {
 	color: #04AA6D;
 }
 
