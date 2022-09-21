@@ -113,18 +113,10 @@ label {
 }
 
 .mapselection {
-	/*
-	display: flex;
-	align-items: center;
-	justify-items: auto;
-	text-align: center;
-	overflow-x: auto;
-	overflow-y: hidden;
-	*/
 	display: grid;
 	gap: 1rem;
 
-	grid-template-columns: repeat(10, 1fr);
+	grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
 }
 
 .pmapa {
@@ -152,7 +144,9 @@ label {
 
 .playerselection {
 	display: grid;
-	grid-template-columns: auto auto auto auto auto auto;
+	gap: 1rem;
+
+	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 
 .playerbox {
