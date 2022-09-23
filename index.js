@@ -5,7 +5,8 @@ const l = "l", r = "r", u = "u", d = "d", e = "end";
 const tWidth = 32, tHeight = tWidth;
 
 var numDado = 0;
-var numberOfPlayers = 1;
+var activePlayers = [];
+var currentPlayerIndex = 0;
 var mapaSelecionado = 1;
 
 var tileSetImage = new Image();
@@ -105,7 +106,16 @@ class Casa {
 class Player {
     position;
     movementModifier;
-    constructor(position) {
+    tipo;
+    nome;
+    constructor(tipo, nome) {
+        this.tipo = parseInt(tipo);
+        this.nome = nome;
+        this.position = currMap.array.indexOf(8);
+        console.log(this.position);
+    }
+
+    initializePosition(position) {
         this.position = position;
         this.movementModifier = 1;
     }
@@ -477,6 +487,16 @@ function animarDado() {
     }
 }
 
+function cyclePlayers() {
+    if (currentPlayerIndex + 1 >= activePlayers.length) {
+        currentPlayerIndex = 0;
+    }
+    else {
+        currentPlayerIndex++;
+    }
+    console.log("CURRENT PLAYER INDEX = " + currentPlayerIndex);
+}
+
 function rodarDado() {
     numDado = getRandomInt(0, 5);
     canvasDado.style = "border: 3px solid #04AA6D";
@@ -484,7 +504,9 @@ function rodarDado() {
         canvasDado.style = "border: 3px solid white";
     }, 200);
 
-    animarDado();
+    cyclePlayers();
+
+    //animarDado();
 }
 
 function drawDado(number) {
@@ -554,6 +576,13 @@ function drawGame() {
                     ctx.drawImage(tileSetImage, 15 * 32, 0, tWidth, tHeight, x, y, tWidth, tHeight);
                     break;
             }
+
+            for (var k = 0; k < activePlayers.length; k++) {
+                //console.log("activePlayers[k].position = " + activePlayers[k].position + " i = " + i);
+                if (activePlayers[k].position == i) {
+                    ctx.drawImage(tileSetImage, (activePlayers[k].tipo - 1) * 32, 32, tWidth, tHeight, x, y, tWidth, tHeight);
+                }
+            }
             i++;
         }
     }
@@ -579,27 +608,37 @@ function toggleScreen(id, toggle) {
 }
 
 function startGame() {
+    let sel = 0;
+    document.querySelectorAll(".checkbox").forEach(function (e) {
+        if (e.checked) {
+            sel++;
+        }
+    });
+    if (sel == 0) {
+        alert("Selecione os personagens!");
+        return;
+    }
+
     toggleScreen("mainmenu", false);
     toggleScreen("gamehidden", true);
     let jogadoresBtns = document.querySelectorAll(".checkbox");
-    var jogadoresAtivos = [];
+    activePlayers = [];
+
+    mapaSelecionado = parseInt(document.querySelector('input[name="mapselect"]:checked').value);
+    currMap = mapas[mapaSelecionado - 1];
+    console.log("mapa selecionado: " + mapaSelecionado);
 
     jogadoresBtns.forEach(function (e) {
         if (e.checked) {
-            jogadoresAtivos.push([e.value, e.parentNode.querySelector(".radiobtn").querySelector("input").value]);
+            activePlayers.push(new Player(e.value, e.parentNode.querySelector(".radiobtn").querySelector("input").value));
             //esse monstro no indice 1 do vetor eh o nome do jogador ¯\_(ツ)_/¯
         }
     });
 
-    console.log("Jogador ativo[0]: " + jogadoresAtivos[0]);
+    console.log("Jogador ativo[0]: " + activePlayers[0].nome);
 
     canvasDado.style = "border: 3px solid white";
 
-    mapaSelecionado = parseInt(document.querySelector('input[name="mapselect"]:checked').value);
-
-    console.log("mapa selecionado: " + mapaSelecionado);
-    currMap = mapas[mapaSelecionado-1];
-    
     canvas.width = currMap.mWidth;
     canvas.height = currMap.mHeight;
     drawGame();
