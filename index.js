@@ -112,11 +112,6 @@ class Player {
         this.tipo = parseInt(tipo);
         this.nome = nome;
         this.position = currMap.array.indexOf(8);
-        console.log(this.position);
-    }
-
-    initializePosition(position) {
-        this.position = position;
         this.movementModifier = 1;
     }
 
@@ -505,6 +500,7 @@ function rodarDado() {
     }, 200);
 
     cyclePlayers();
+    activePlayers[currentPlayerIndex].move(numDado);
 
     //animarDado();
 }
@@ -634,8 +630,6 @@ function startGame() {
             //esse monstro no indice 1 do vetor eh o nome do jogador ¯\_(ツ)_/¯
         }
     });
-
-    console.log("Jogador ativo[0]: " + activePlayers[0].nome);
 
     canvasDado.style = "border: 3px solid white";
 
