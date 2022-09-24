@@ -39,6 +39,7 @@ class Mapa {
     mapArray;
     mWidth;
     mHeight;
+    direct;
 
     constructor(array, mWidth, mHeight, direct) {
         this.array = array;
@@ -50,12 +51,7 @@ class Mapa {
             let tp = null, mod = null, dir = null;
             let enabledArray = [], disabledArray = [];
             tp = array[i];
-            let directCount = 0;
-
-            if (array[i] != 0) {
-                dir = direct[directCount];
-                directCount++;
-            }
+            dir = direct[i];
 
             if (array[i] == 2) {
                 let posEnabled = 0;
@@ -87,7 +83,6 @@ class Mapa {
             let c = new Casa(tp, mod, dir);
             mapArray.push(c);
         }
-
         this.mapArray = mapArray;
     }
 }
@@ -116,16 +111,77 @@ class Player {
     }
 
     move(n) {
-        if (this.position + n >= 0) {
-            this.position += (n * this.movementModifier);
+        if (n == 0) return;
+        let goalMoved = n * this.movementModifier, moved = 0;
+
+        do {
+            this.moveAux(1);
+            if(currMap.mapArray[this.position].tipo == 9){
+                alert("ganhou");
+            }
+            moved++;
+        } while (moved < goalMoved);
+    }
+
+    moveAux(n) {
+        switch (currMap.mapArray[this.position].direcao) {
+            case r:
+                this.position += n;
+                break;
+            case l:
+                this.position -= n;
+                break;
+            case d:
+                this.position += currMap.mWidth/32;
+                break;
+            case u:
+                this.position -= currMap.mWidth/32;
+                break;
+            default:
+                console.log("erro de movimento");
         }
     }
 }
 
 var mapas = [];
 
-let dirMapa1 = [d, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, d, d, l, l, l, l, l, l, l, l, l, l, l, l, l, l, l, d, d, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, d, d, l, l, l, l, l, l, l, l, l, l, l, l, l, l, l, d, d, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, d, d, l, l, l, l, l, l, l, l, l, l, l, l, l, l, l, d, d, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, d, d, l, l, l, l, l, l, l, l, l, l, l, l, l, l, e];
-let arrMapa1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 9, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+let dirMapa1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, d, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, d, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, d, 0,
+    0, d, l, l, l, l, l, l, l, l, l, l, l, l, l, l, l, 0,
+    0, d, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, d, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, d, 0,
+    0, d, l, l, l, l, l, l, l, l, l, l, l, l, l, l, l, 0,
+    0, d, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, d, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, d, 0,
+    0, d, l, l, l, l, l, l, l, l, l, l, l, l, l, l, l, 0,
+    0, d, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, r, r, r, r, r, r, r, r, r, r, r, r, r, r, r, d, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, d, 0,
+    0, e, l, l, l, l, l, l, l, l, l, l, l, l, l, l, l, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+let arrMapa1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0,
+    0, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 0,
+    0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+    0, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 0,
+    0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
+    0, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 0,
+    0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0,
+    0, 9, 2, 2, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 2, 2, 1, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 mapas.push(new Mapa(arrMapa1, 18 * 32, 18 * 32, dirMapa1));
 
 let arrMapa2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -500,7 +556,7 @@ function rodarDado() {
     }, 200);
 
     cyclePlayers();
-    activePlayers[currentPlayerIndex].move(numDado);
+    activePlayers[currentPlayerIndex].move(numDado + 1);
 
     //animarDado();
 }
@@ -574,7 +630,6 @@ function drawGame() {
             }
 
             for (var k = 0; k < activePlayers.length; k++) {
-                //console.log("activePlayers[k].position = " + activePlayers[k].position + " i = " + i);
                 if (activePlayers[k].position == i) {
                     ctx.drawImage(tileSetImage, (activePlayers[k].tipo - 1) * 32, 32, tWidth, tHeight, x, y, tWidth, tHeight);
                 }
@@ -605,26 +660,22 @@ function toggleScreen(id, toggle) {
 
 function startGame() {
     let sel = 0;
-    document.querySelectorAll(".checkbox").forEach(function (e) {
-        if (e.checked) {
-            sel++;
-        }
-    });
+    document.querySelectorAll(".checkbox").forEach(function (e) { if (e.checked) { sel++; } });
     if (sel == 0) {
-        alert("Selecione os personagens!");
+        alert("Selecione pelo menos um personagem!");
         return;
     }
 
     toggleScreen("mainmenu", false);
     toggleScreen("gamehidden", true);
-    let jogadoresBtns = document.querySelectorAll(".checkbox");
+
     activePlayers = [];
 
     mapaSelecionado = parseInt(document.querySelector('input[name="mapselect"]:checked').value);
     currMap = mapas[mapaSelecionado - 1];
     console.log("mapa selecionado: " + mapaSelecionado);
 
-    jogadoresBtns.forEach(function (e) {
+    document.querySelectorAll(".checkbox").forEach(function (e) {
         if (e.checked) {
             activePlayers.push(new Player(e.value, e.parentNode.querySelector(".radiobtn").querySelector("input").value));
             //esse monstro no indice 1 do vetor eh o nome do jogador ¯\_(ツ)_/¯
