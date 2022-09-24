@@ -112,12 +112,65 @@ class Player {
 
     move(n) {
         if (n == 0) return;
+        if(this.movementModifier != 1) this.movementModifier = 1;
         let goalMoved = n * this.movementModifier, moved = 0;
 
         do {
             this.moveAux(1);
-            if(currMap.mapArray[this.position].tipo == 9){
+            if (currMap.mapArray[this.position].tipo == 9) {
                 alert("ganhou");
+            }
+            console.log("tipo: " + currMap.mapArray[this.position].tipo);
+            switch (currMap.mapArray[this.position].tipo) {
+                case 2:
+                    switch(currMap.mapArray[this.position].modificador){
+                        case 0:
+                            console.log("+1");
+                            this.moveAux(1);
+                            break;
+                        case 1:
+                            console.log("+3");
+                            this.moveAux(3);
+                            break;
+                        case 2:
+                            console.log("+10");
+                            this.moveAux(10);
+                            break;
+                        case 3:
+                            console.log("x2");
+                            this.movementModifier = 2;
+                            break;
+                        case 4:
+                            alert("jogue de novo ainda nao foi implementado");
+                            break;
+                    }
+                    break;
+                    case 3:
+                        switch(currMap.mapArray[this.position].modificador){
+                            case 0:
+                                console.log("-1");
+                                this.moveAux(-1);
+                                break;
+                            case 1:
+                                console.log("-3");
+                                this.moveAux(-3);
+                                break;
+                            case 2:
+                                console.log("-10");
+                                this.moveAux(-10);
+                                break;
+                            case 3:
+                                console.log("/2");
+                                this.movementModifier = 0.5;
+                                break;
+                            case 4:
+                                alert("perdeu a vez ainda nao foi implementado");
+                                break;
+                        }
+                        break;
+                case 9:
+                    alert("ganhou");
+                    break;
             }
             moved++;
         } while (moved < goalMoved);
@@ -132,10 +185,10 @@ class Player {
                 this.position -= n;
                 break;
             case d:
-                this.position += currMap.mWidth/32;
+                this.position += currMap.mWidth / 32;
                 break;
             case u:
-                this.position -= currMap.mWidth/32;
+                this.position -= currMap.mWidth / 32;
                 break;
             default:
                 console.log("erro de movimento");
