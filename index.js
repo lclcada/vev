@@ -61,7 +61,7 @@ class Mapa {
                         posEnabled++;
                     }
                 }
-                if (posEnabled == 0) { console.log("¯\_(ツ)_/¯"); break; }
+                if (posEnabled == 0) { alert("¯\_(ツ)_/¯"); break; }
                 let rnd = weightedRand({ 0: 0.3, 1: 0.25, 2: 0.1, 3: 0.15, 4: 0.2 });
                 rnd = rnd();
                 mod = enabledArray[getRandomInt(0, posEnabled - 1)];
@@ -74,7 +74,7 @@ class Mapa {
                         posDisabled++;
                     }
                 }
-                if (posDisabled == 0) { console.log("¯\_(ツ)_/¯"); break; }
+                if (posDisabled == 0) { alert("¯\_(ツ)_/¯"); break; }
                 let rnd = weightedRand({ 0: 0.3, 1: 0.25, 2: 0.1, 3: 0.15, 4: 0.2 });
                 rnd = rnd();
                 mod = disabledArray[getRandomInt(0, posDisabled - 1)];
@@ -110,14 +110,42 @@ class Player {
         this.movementModifier = 1;
     }
 
+    findValidBackwardsDirections(posicao) {
+        let out = [];
+        switch (currMap.mapArray[posicao].direcao) {
+            case r:
+                if (currMap.mapArray[posicao - 1].tipo != 0) out.push(l);
+                if (currMap.mapArray[posicao + (currMap.mWidth / 32)].tipo != 0) out.push(d);
+                if (currMap.mapArray[posicao - (currMap.mWidth / 32)].tipo != 0) out.push(u);
+                break;
+            case l:
+                if (currMap.mapArray[posicao + 1].tipo != 0) out.push(r);
+                if (currMap.mapArray[posicao + (currMap.mWidth / 32)].tipo != 0) out.push(d);
+                if (currMap.mapArray[posicao - (currMap.mWidth / 32)].tipo != 0) out.push(u);
+                break;
+            case d:
+                if (currMap.mapArray[posicao + 1].tipo != 0) out.push(r);
+                if (currMap.mapArray[posicao - 1].tipo != 0) out.push(l);
+                if (currMap.mapArray[posicao - (currMap.mWidth / 32)].tipo != 0) out.push(u);
+                break;
+            case u:
+                if (currMap.mapArray[posicao + 1].tipo != 0) out.push(r);
+                if (currMap.mapArray[posicao - 1].tipo != 0) out.push(l);
+                if (currMap.mapArray[posicao + (currMap.mWidth / 32)].tipo != 0) out.push(d);
+                break;
+        }
+        console.log("valid backwards:" + out[0]);
+        return out;
+    }
+
     verifyValid(posicao) {
         if (currMap.mapArray[posicao].tipo == 0) return false;
-        console.log("VERIFICADO: POSICAO " + posicao);
+        console.log("VERIFICADO: " + posicao);
         return true;
     }
 
     checkCurrentHouse() { //returns true if it has reached a house with no further possible movement. else returns false
-        console.log("Tipo da casa atual: " + currMap.mapArray[this.position].tipo);
+        //console.log("Tipo da casa atual: " + currMap.mapArray[this.position].tipo);
         switch (currMap.mapArray[this.position].tipo) {
             case 0:
                 alert("erro! foi pra uma casa null. contate o desenvolvedor");
@@ -191,15 +219,11 @@ class Player {
         if (n == 0) return;
         if (this.movementModifier != 1) this.movementModifier = 1;
 
-        //good movement thing
         this.moveAux(n);
         let state = false;
         do {
             state = this.checkCurrentHouse();
         } while (!state);
-
-        //deprecated and dumb and stupid do while
-        /*
         do {
             this.moveAux(1);
 
@@ -261,7 +285,6 @@ class Player {
             }
             moved++;
         } while (moved < goalMoved);
-        */
     }
 
     moveAux(n) {
@@ -294,22 +317,23 @@ class Player {
         else if (n < 0) {
             console.log("andando pra tras");
             do {
-                switch (currMap.mapArray[this.position].direcao) {
+                console.log("DO NEG count=" + count);
+                switch (this.findValidBackwardsDirections(this.position)[0]) {
                     case r:
-                        if (!this.verifyValid(this.position - 1)) return;
-                        this.position--;
-                        break;
-                    case l:
                         if (!this.verifyValid(this.position + 1)) return;
                         this.position++;
                         break;
-                    case d:
-                        if (!this.verifyValid(this.position - (currMap.mWidth / 32))) return;
-                        this.position -= currMap.mWidth / 32;
+                    case l:
+                        if (!this.verifyValid(this.position - 1)) return;
+                        this.position--;
                         break;
-                    case u:
+                    case d:
                         if (!this.verifyValid(this.position + (currMap.mWidth / 32))) return;
                         this.position += currMap.mWidth / 32;
+                        break;
+                    case u:
+                        if (!this.verifyValid(this.position - (currMap.mWidth / 32))) return;
+                        this.position -= currMap.mWidth / 32;
                         break;
                     default:
                         alert("erro de movimento neg"); return;
@@ -728,7 +752,7 @@ function cyclePlayers() {
 
 function rodarDado() {
     numDado = getRandomInt(0, 5);
-    console.log("num dado = " + numDado);
+    console.log("---NUM DADO = " + (numDado + 1));
     canvasDado.style = "border: 3px solid #04AA6D";
     setTimeout(function () {
         canvasDado.style = "border: 3px solid white";
