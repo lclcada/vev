@@ -100,6 +100,7 @@ class Casa {
 
 class Player {
     position;
+    laggingPos;
     movementModifier;
     tipo;
     nome;
@@ -107,6 +108,7 @@ class Player {
         this.tipo = parseInt(tipo);
         this.nome = nome;
         this.position = currMap.array.indexOf(8);
+        this.laggingPos = this.position;
         this.movementModifier = 1;
     }
 
@@ -209,7 +211,7 @@ class Player {
                 }
                 break;
             case 9:
-                alert("ganhou");
+                alert("ganhou"); return true;
                 break;
         }
         return false;
@@ -224,67 +226,6 @@ class Player {
         do {
             state = this.checkCurrentHouse();
         } while (!state);
-        do {
-            this.moveAux(1);
-
-            console.log("Tipo da casa atual: " + currMap.mapArray[this.position].tipo);
-            switch (currMap.mapArray[this.position].tipo) {
-                case 2:
-                    switch (currMap.mapArray[this.position].modificador) {
-                        case 0:
-                            console.log("+1");
-                            this.moveAux(1);
-                            break;
-                        case 1:
-                            console.log("+3");
-                            this.moveAux(3);
-                            break;
-                        case 2:
-                            console.log("+10");
-                            this.moveAux(10);
-                            break;
-                        case 3:
-                            console.log("x2");
-                            this.movementModifier = 2;
-                            break;
-                        case 4:
-                            alert("jogue de novo ainda nao foi implementado");
-                            break;
-                        default:
-                            alert("erro nos mods positivos");
-                    }
-                    break;
-                case 3:
-                    switch (currMap.mapArray[this.position].modificador) {
-                        case 0:
-                            console.log("-1");
-                            this.moveAux(-1);
-                            break;
-                        case 1:
-                            console.log("-3");
-                            this.moveAux(-3);
-                            break;
-                        case 2:
-                            console.log("-10");
-                            this.moveAux(-10);
-                            break;
-                        case 3:
-                            console.log("/2");
-                            this.movementModifier = 0.5;
-                            break;
-                        case 4:
-                            alert("perdeu a vez ainda nao foi implementado");
-                            break;
-                        default:
-                            alert("erro nos mods positivos");
-                    }
-                    break;
-                case 9:
-                    alert("ganhou");
-                    break;
-            }
-            moved++;
-        } while (moved < goalMoved);
     }
 
     moveAux(n) {
@@ -741,12 +682,8 @@ function animarDado() {
 }
 
 function cyclePlayers() {
-    if (currentPlayerIndex + 1 >= activePlayers.length) {
-        currentPlayerIndex = 0;
-    }
-    else {
-        currentPlayerIndex++;
-    }
+    if (currentPlayerIndex + 1 >= activePlayers.length) currentPlayerIndex = 0;
+    else currentPlayerIndex++;
     console.log("CURRENT PLAYER INDEX = " + currentPlayerIndex);
 }
 
@@ -766,14 +703,12 @@ function rodarDado() {
 
 function drawDado(number) {
     if (ctxDado == null) { return; }
-
     ctxDado.clearRect(0, 0, canvasDado.width, canvasDado.height);
-
     ctxDado.drawImage(tileSetDado, number * 32, 0, 32, 32, 0, 0, 128, 128);
 }
 
 function drawGame() {
-    if (ctx == null) { return; }
+    if (ctx == null) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawDado(numDado);
 
@@ -833,7 +768,7 @@ function drawGame() {
             }
 
             for (var k = 0; k < activePlayers.length; k++) {
-                if (activePlayers[k].position == i) {
+                if (activePlayers[k].laggingPos == i) {
                     ctx.drawImage(tileSetImage, (activePlayers[k].tipo - 1) * 32, 32, tWidth, tHeight, x, y, tWidth, tHeight);
                 }
             }
