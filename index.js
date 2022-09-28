@@ -767,9 +767,10 @@ function drawGame() {
                     break;
             }
 
-            for (var k = 0; k < activePlayers.length; k++) {
+            for (let k = 0; k < activePlayers.length; k++) {
                 if (activePlayers[k].laggingPos == i) {
                     ctx.drawImage(tileSetImage, (activePlayers[k].tipo - 1) * 32, 32, tWidth, tHeight, x, y, tWidth, tHeight);
+                    if (activePlayers[k].laggingPos < activePlayers[k].position) activePlayers[k].laggingPos++;
                 }
             }
             i++;
