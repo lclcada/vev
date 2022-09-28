@@ -110,20 +110,103 @@ class Player {
         this.movementModifier = 1;
     }
 
+    verifyValid(posicao) {
+        if (currMap.mapArray[posicao].tipo == 0) return false;
+        console.log("VERIFICADO: POSICAO " + posicao);
+        return true;
+    }
+
+    checkCurrentHouse() { //returns true if it has reached a house with no further possible movement. else returns false
+        console.log("Tipo da casa atual: " + currMap.mapArray[this.position].tipo);
+        switch (currMap.mapArray[this.position].tipo) {
+            case 0:
+                alert("erro! foi pra uma casa null. contate o desenvolvedor");
+                return true;
+                break;
+            case 1:
+                return true;
+                break;
+            case 2:
+                switch (currMap.mapArray[this.position].modificador) {
+                    case 0:
+                        console.log("+1");
+                        this.moveAux(1);
+                        break;
+                    case 1:
+                        console.log("+3");
+                        this.moveAux(3);
+                        break;
+                    case 2:
+                        console.log("+10");
+                        this.moveAux(10);
+                        break;
+                    case 3:
+                        console.log("x2");
+                        this.movementModifier = 2;
+                        return true;
+                        break;
+                    case 4:
+                        console.log("jogue de novo ainda nao foi implementado");
+                        return true;
+                        break;
+                    default:
+                        alert("erro nos mods positivos");
+                }
+                break;
+            case 3:
+                switch (currMap.mapArray[this.position].modificador) {
+                    case 0:
+                        console.log("-1");
+                        this.moveAux(-1);
+                        break;
+                    case 1:
+                        console.log("-3");
+                        this.moveAux(-3);
+                        break;
+                    case 2:
+                        console.log("-10");
+                        this.moveAux(-10);
+                        break;
+                    case 3:
+                        console.log("/2");
+                        this.movementModifier = 0.5;
+                        return true;
+                        break;
+                    case 4:
+                        console.log("perdeu a vez ainda nao foi implementado");
+                        return true;
+                        break;
+                    default:
+                        alert("erro nos mods positivos");
+                }
+                break;
+            case 9:
+                alert("ganhou");
+                break;
+        }
+        return false;
+    }
+
     move(n) {
         if (n == 0) return;
-        if(this.movementModifier != 1) this.movementModifier = 1;
-        let goalMoved = n * this.movementModifier, moved = 0;
+        if (this.movementModifier != 1) this.movementModifier = 1;
 
+        //good movement thing
+        this.moveAux(n);
+        let state = false;
+        do {
+            state = this.checkCurrentHouse();
+        } while (!state);
+
+        //deprecated and dumb and stupid do while
+        /*
         do {
             this.moveAux(1);
-            if (currMap.mapArray[this.position].tipo == 9) {
-                alert("ganhou");
-            }
-            console.log("tipo: " + currMap.mapArray[this.position].tipo);
+
+            console.log("Tipo da casa atual: " + currMap.mapArray[this.position].tipo);
             switch (currMap.mapArray[this.position].tipo) {
                 case 2:
-                    switch(currMap.mapArray[this.position].modificador){
+                    switch (currMap.mapArray[this.position].modificador) {
                         case 0:
                             console.log("+1");
                             this.moveAux(1);
@@ -143,56 +226,98 @@ class Player {
                         case 4:
                             alert("jogue de novo ainda nao foi implementado");
                             break;
+                        default:
+                            alert("erro nos mods positivos");
                     }
                     break;
-                    case 3:
-                        switch(currMap.mapArray[this.position].modificador){
-                            case 0:
-                                console.log("-1");
-                                this.moveAux(-1);
-                                break;
-                            case 1:
-                                console.log("-3");
-                                this.moveAux(-3);
-                                break;
-                            case 2:
-                                console.log("-10");
-                                this.moveAux(-10);
-                                break;
-                            case 3:
-                                console.log("/2");
-                                this.movementModifier = 0.5;
-                                break;
-                            case 4:
-                                alert("perdeu a vez ainda nao foi implementado");
-                                break;
-                        }
-                        break;
+                case 3:
+                    switch (currMap.mapArray[this.position].modificador) {
+                        case 0:
+                            console.log("-1");
+                            this.moveAux(-1);
+                            break;
+                        case 1:
+                            console.log("-3");
+                            this.moveAux(-3);
+                            break;
+                        case 2:
+                            console.log("-10");
+                            this.moveAux(-10);
+                            break;
+                        case 3:
+                            console.log("/2");
+                            this.movementModifier = 0.5;
+                            break;
+                        case 4:
+                            alert("perdeu a vez ainda nao foi implementado");
+                            break;
+                        default:
+                            alert("erro nos mods positivos");
+                    }
+                    break;
                 case 9:
                     alert("ganhou");
                     break;
             }
             moved++;
         } while (moved < goalMoved);
+        */
     }
 
     moveAux(n) {
-        switch (currMap.mapArray[this.position].direcao) {
-            case r:
-                this.position += n;
-                break;
-            case l:
-                this.position -= n;
-                break;
-            case d:
-                this.position += currMap.mWidth / 32;
-                break;
-            case u:
-                this.position -= currMap.mWidth / 32;
-                break;
-            default:
-                console.log("erro de movimento");
+        let count = 0;
+        if (n > 0) {
+            do {
+                switch (currMap.mapArray[this.position].direcao) {
+                    case r:
+                        if (!this.verifyValid(this.position + 1)) return;
+                        this.position++;
+                        break;
+                    case l:
+                        if (!this.verifyValid(this.position - 1)) return;
+                        this.position--;
+                        break;
+                    case d:
+                        if (!this.verifyValid(this.position + (currMap.mWidth / 32))) return;
+                        this.position += currMap.mWidth / 32;
+                        break;
+                    case u:
+                        if (!this.verifyValid(this.position - (currMap.mWidth / 32))) return;
+                        this.position -= currMap.mWidth / 32;
+                        break;
+                    default:
+                        alert("erro de movimento pos"); return;
+                }
+                count++;
+            } while (count < n);
         }
+        else if (n < 0) {
+            console.log("andando pra tras");
+            do {
+                switch (currMap.mapArray[this.position].direcao) {
+                    case r:
+                        if (!this.verifyValid(this.position - 1)) return;
+                        this.position--;
+                        break;
+                    case l:
+                        if (!this.verifyValid(this.position + 1)) return;
+                        this.position++;
+                        break;
+                    case d:
+                        if (!this.verifyValid(this.position - (currMap.mWidth / 32))) return;
+                        this.position -= currMap.mWidth / 32;
+                        break;
+                    case u:
+                        if (!this.verifyValid(this.position + (currMap.mWidth / 32))) return;
+                        this.position += currMap.mWidth / 32;
+                        break;
+                    default:
+                        alert("erro de movimento neg"); return;
+                }
+                count--;
+            } while (count >= n);
+        }
+        else alert("erro! parametro invalido passado ao moveAux()");
     }
 }
 
@@ -603,6 +728,7 @@ function cyclePlayers() {
 
 function rodarDado() {
     numDado = getRandomInt(0, 5);
+    console.log("num dado = " + numDado);
     canvasDado.style = "border: 3px solid #04AA6D";
     setTimeout(function () {
         canvasDado.style = "border: 3px solid white";
